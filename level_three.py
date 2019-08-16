@@ -6,7 +6,7 @@ import transitions
 from transitions import *
 import random
 
-import level_two
+# import level_two
 
 def text_objects(text, font):
     black = (0,0,0)
