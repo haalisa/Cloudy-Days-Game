@@ -13,6 +13,8 @@ from transitions import *
 import random
 
 import start_menu
+from movement import Player
+from movement import Cat
 
 def text_objects(text, font):
     black = (0,0,0)
@@ -21,6 +23,8 @@ def text_objects(text, font):
 
 
 def levelone ():
+
+    pygame.init() #take this out later
 
     flags = FULLSCREEN | DOUBLEBUF
 
@@ -40,61 +44,66 @@ def levelone ():
     truevar = True
     runSecondTime = False
     clock = pygame.time.Clock()
+
+    player = Cat()
+
     while truevar:
-        bg = pygame.image.load("pics/lvl-bgs/bedroom.png").convert()
-        bg = pygame.transform.scale(bg, (width,height))
-        screen.blit(bg, (0,0))
+        # bg = pygame.image.load("pics/lvl-bgs/bedroom.png").convert()
+        # bg = pygame.transform.scale(bg, (width,height))
+        # screen.blit(bg, (0,0))
 
-        #player
-        krabsPos = [0,100] #player position
-        krabs = pygame.image.load("pics/krabs.png")
-        # krabs = pygame.Surface.get_rect
-        # krabs.transform.scale(250,350)
-        screen.blit(krabs, krabsPos) #draw screen elements
+        # #player
+        # krabsPos = [0,100] #player position
+        # krabs = pygame.image.load("pics/krabs.png")
+        # # krabs = pygame.Surface.get_rect
+        # # krabs.transform.scale(250,350)
+        # screen.blit(krabs, krabsPos) #draw screen elements
 
-        #speech bubble
-        speechBubble = pygame.draw.ellipse(screen, darkBlue, (width/2-300,height/2-200,300,200)) #position,size
-        transitions.run ("fadeOutUp")
-        transitions.updateScreen()
-        #the go back button
-        mouse = pygame.mouse.get_pos()
-        button2Pos = (1000,100,100,50)
-        goBackButton = pygame.draw.rect(screen, red, button2Pos)
-
-        if goBackButton.collidepoint(mouse):
-            goBackButton = pygame.draw.rect(screen, red,button2Pos)
-        else:
-            startButton = pygame.draw.rect(screen, white,button2Pos)
+        # #speech bubble
+        # speechBubble = pygame.draw.ellipse(screen, darkBlue, (width/2-300,height/2-200,300,200)) #position,size
+        # transitions.run ("fadeOutUp")
+        # transitions.updateScreen()
+        # #the go back button
+        # mouse = pygame.mouse.get_pos()
+        # button2Pos = (1000,100,100,50)
+        # goBackButton = pygame.draw.rect(screen, red, button2Pos)
+        #
+        # if goBackButton.collidepoint(mouse):
+        #     goBackButton = pygame.draw.rect(screen, red,button2Pos)
+        # else:
+        #     startButton = pygame.draw.rect(screen, white,button2Pos)
 
         #if button is clicked
         click = pygame.mouse.get_pressed()
 
-
-        if runSecondTime == True:
-            if click[0] == 1 and goBackButton.collidepoint(mouse):
-
-                start_menu.game_intro()
-                truevar = False
+        #
+        # if runSecondTime == True:
+        #     if click[0] == 1 and goBackButton.collidepoint(mouse):
+        #
+        #         start_menu.game_intro()
+        #         truevar = False
 
         #defining texts
         #button text
-        buttonText = pygame.font.Font('fonts/Roboto-Thin.ttf', 25)
-        TextSurf3, TextRect3 = text_objects("go back", buttonText)
-        TextRect3.center = (1050,125)
-
-        #speech bubble text
-        speechText = pygame.font.Font('fonts/Roboto-Thin.ttf', 20)
-        TextSurf4, TextRect4 = text_objects("Hello world!", speechText)
-        TextRect4.center = (400,200)
-
-        screen.blit(TextSurf3,TextRect3)
-        screen.blit(TextSurf4,TextRect4)
+        # buttonText = pygame.font.Font('fonts/Roboto-Thin.ttf', 25)
+        # TextSurf3, TextRect3 = text_objects("go back", buttonText)
+        # TextRect3.center = (1050,125)
+        #
+        # #speech bubble text
+        # speechText = pygame.font.Font('fonts/Roboto-Thin.ttf', 20)
+        # TextSurf4, TextRect4 = text_objects("Hello world!", speechText)
+        # TextRect4.center = (400,200)
+        #
+        # screen.blit(TextSurf3,TextRect3)
+        # screen.blit(TextSurf4,TextRect4)
 
         pygame.display.flip()
 
         clock.tick(60)
 
         runSecondTime = True
+
+        screen.blit(player.image, player.rect)
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -104,3 +113,6 @@ def levelone ():
                if event.key == K_ESCAPE:
                    pygame.quit()
                    exit(0)
+
+#take this out later
+levelone()
