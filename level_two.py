@@ -2,11 +2,11 @@
 
 import pygame
 from pygame.locals import *
-import transitions
-from transitions import *
-import random
+# import transitions
+# from transitions import *
+# import random
 
-import start_menu
+# import start_menu this is what is causing only lvl 1 to run
 
 def text_objects(text, font):
     black = (0,0,0)
@@ -28,8 +28,7 @@ def leveltwo ():
     #defining screen
     width, height = 1200,600
     screen = pygame.display.set_mode((width, height))
-    transitions.init ( screen, width, height )
-    hideSpeech = True
+    # transitions.init ( screen, width, height )
 
     truevar = True
     clock = pygame.time.Clock()
@@ -39,9 +38,33 @@ def leveltwo ():
     clock.tick(180)
 
     while truevar:
-        bgKitchen = pygame.image.load("pics/lvl-bgs/kitchen.jpg").convert()
-        bgKitchen = pygame.transform.scale(bgKitchen, (width,height))
-        screen.blit(bgKitchen, (0,0))
+        kitchen = pygame.image.load("pics/lvl-bgs/kitchen.png").convert()
+        kitchen = pygame.transform.scale(kitchen, (width,height))
+        screen.blit(kitchen, (0,0))
+
+        chair1 = pygame.image.load("pics/lvl-bgs/chair1.png")
+        chair1 = pygame.transform.scale(chair1, (width,height))
+        screen.blit(chair1, (0,0))
+
+        chair2 = pygame.image.load("pics/lvl-bgs/chair2.png")
+        chair2 = pygame.transform.scale(chair2, (width,height))
+        screen.blit(chair2, (0,0))
+
+        bowl = pygame.image.load("pics/lvl-bgs/bowl.png")
+        bowl = pygame.transform.scale(bowl, (width,height))
+        screen.blit(bowl, (0,0))
+
+        cereal = pygame.image.load("pics/lvl-bgs/cereal.png")
+        cereal = pygame.transform.scale(cereal, (width,height))
+        screen.blit(cereal, (0,0))
+
+        door_out = pygame.image.load("pics/lvl-bgs/doorout.png")
+        door_out = pygame.transform.scale(door_out, (width,height))
+        screen.blit(door_out, (0,0))
+
+        kitchen_door = pygame.image.load("pics/lvl-bgs/kitchen_door.png")
+        kitchen_door = pygame.transform.scale(kitchen_door, (width,height))
+        screen.blit(kitchen_door, (0,0))
 
         pygame.display.flip()
 
@@ -59,8 +82,5 @@ def leveltwo ():
 
             elif event.type == pygame.MOUSEBUTTONDOWN:
                 click_img = event.pos
-
-
-
 
 leveltwo()
