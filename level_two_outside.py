@@ -6,7 +6,7 @@ import transitions
 from transitions import *
 import random
 
-import start_menu
+# import start_menu
 
 def text_objects(text, font):
     black = (0,0,0)
