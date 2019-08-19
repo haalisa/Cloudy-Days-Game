@@ -9,6 +9,13 @@ from movement2 import *
 
 # import start_menu this is what is causing only lvl 1 to run
 
+class Oreo(pygame.sprite.Sprite):
+    def __init__(self):
+        o = pygame.draw.circle(screen, brown, (x,y),20,10)
+        super(Oreo,self).__init__()
+        self.image = o
+        self.circle = pygame.Circle(20, y, 20, 10)
+
 def text_objects(text, font):
     black = (0,0,0)
     textSurface = font.render(text, True, black)
@@ -52,16 +59,17 @@ def cerealgame ():
 
     player = Cat()
 
+
     while truevar:
         screen.fill(darkBlue)
         click = pygame.mouse.get_pressed()
         mouse = pygame.mouse.get_pos()
 
         # creates 3 OREO O's
-        # o = pygame.draw.circle(screen, brown, (x,y),20,10)
-        # o2 = pygame.draw.circle(screen, brown, (newx,newy),20,10)
-        # o3 = pygame.draw.circle(screen, brown, (newx,newy),20,10)
-        o = pygame.draw.rect(screen, brown, (520,126,60,78))
+        o = pygame.draw.circle(screen, brown, (x,y),20,10)
+        # # o2 = pygame.draw.circle(screen, brown, (newx,newy),20,10)
+        # # o3 = pygame.draw.circle(screen, brown, (newx,newy),20,10)
+        # o = pygame.draw.rect(screen, brown, (20,y,100,100))
 
         # makes 3 OREO O's fall
         if y < 650:
@@ -83,9 +91,15 @@ def cerealgame ():
             newesty = random.randint(-700,-500)
 
         # tracks cereal collected
-        if o.rect.colliderect(player.rect):
+        if player.rect.colliderect(o.rect):
             cereal_count += 1
             print("hello world")
+
+        #         self.rect= self.image.get_rect(
+        #             center =(random.randint(0,600), random.randint(200,400))
+        #         )
+        #         self.radius = int(self.rect.width / 2)
+
         # collide = pygame.sprite.collide_mask(player, o)
         # if collide:
         #     print("collided")

@@ -1,9 +1,12 @@
 import pygame
 from pygame.locals import *
 import random
-from movement import Cat
+from movement3 import Cat
 
-from movement import Wall
+from movement3 import Wall
+# from movement import Cat
+#
+# from movement import Wall
 #initialize game
 pygame.init()
 pygame.display.set_caption('test')
