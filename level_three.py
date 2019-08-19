@@ -5,6 +5,7 @@ from pygame.locals import *
 import transitions
 from transitions import *
 import random
+import maze
 
 # import level_two
 
@@ -15,8 +16,9 @@ def text_objects(text, font):
 
 def levelthree ():
 
-    # flags = FULLSCREEN | DOUBLEBUF
+    flags = FULLSCREEN | DOUBLEBUF
 
+    pygame.init()
     #define colors
     black = (0,0,0)
     white = (255,255,255)
@@ -27,21 +29,21 @@ def levelthree ():
 
     #defining screen
     width, height = 1200,600
-    screen = pygame.display.set_mode((width, height))
+    screen = pygame.display.set_mode((width, height),flags)
     transitions.init ( screen, width, height )
     hideSpeech = True
 
     truevar = True
     clock = pygame.time.Clock()
-    click = pygame.mouse.get_pressed()
-    mouse = pygame.mouse.get_pos()
 
-    clock.tick(180)
+
+    clock.tick(60)
 
     screen.fill(white)
 
     while truevar:
-
+        mouse = pygame.mouse.get_pos()
+        click = pygame.mouse.get_pressed()
         lockers = pygame.image.load("pics/lvl-bgs/lockers.png")
         lockers = pygame.transform.scale(lockers, (width,height))
         screen.blit(lockers, (0,0))
@@ -53,10 +55,13 @@ def levelthree ():
         school_floor = pygame.image.load("pics/lvl-bgs/school_floor.png")
         school_floor = pygame.transform.scale(school_floor, (width,height))
         screen.blit(school_floor, (0,0))
+        test_rect = school_door.get_rect()
 
-        if click[0] == 1 and school_door.collidepoint(mouse):
-            print(click)
-            maze()
+        # if door is clicked then go to maze game 
+        if click[0] == 1 and test_rect.collidepoint(mouse):
+            truevar = False
+            maze.main()
+        print(click)
 
         pygame.display.flip()
 
