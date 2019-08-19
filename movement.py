@@ -1,112 +1,65 @@
 import pygame
 from pygame.locals import *
-
+walls= []
 class Cat (pygame.sprite.Sprite):
     def __init__(self):
         super(Cat, self).__init__()
-        self.image = pygame.image.load("pics/bird1.png")
+        self.image = pygame.image.load("pics/cat.gif")
         self.image.set_colorkey((255, 255, 255), RLEACCEL)
         self.rect = self.image.get_rect()
         self.rect.x = 20
-        self.rect.y = 400 #change y position
+        self.rect.y = 260 #change y position
         self.radius = int(self.rect.width / 2)
-
-    def move(self, dx, dy):
+        self.isjump = 0
+        self.v = 8
+    def move(self, dx):
         # Move each axis separately. Note that this checks for collisions both times.
         if dx != 0:
-            self.move_single_axis(dx, 0)
-        if dy != 0:
-            self.move_single_axis(0, dy)
-
-    def move_single_axis(self, dx, dy):
-        # Move the rect
-        self.rect.x += dx
-        self.rect.y += dy
-
+            self.rect.x += dx
         # If you collide with a wall, move out based on velocity
-        # for wall in walls:
-        #     if self.rect.colliderect(wall.rect):
-        #         if dx > 0: # Moving right; Hit the left side of the wall
-        #             self.rect.right = wall.rect.left
-        #         if dx < 0: # Moving left; Hit the right side of the wall
-        #             self.rect.left = wall.rect.right
-        #         if dy > 0: # Moving down; Hit the top side of the wall
-        #             self.rect.bottom = wall.rect.top
-        #         if dy < 0: # Moving up; Hit the bottom side of the wall
-        #             self.rect.top = wall.rect.bottom
-
-class Player(object):
-
-    def __init__(self):
-        super(Player, self).__init__()
-        self.image = pygame.image.load("pics/bird1.png")
-        self.image.set_colorkey((255, 255, 255), RLEACCEL)
-        self.rect = self.image.get_rect(
-        center = (25,25)
-        )
-        self.rect = pygame.Rect(32, 32, 16, 16)
+        for wall in walls:
+            if self.rect.colliderect(wall.rect):
+                if dx > 0: # Moving right; Hit the left side of the wall
+                    self.rect.right = wall.rect.left
+                if dx < 0: # Moving left; Hit the right side of the wall
+                    self.rect.left = wall.rect.right
 
 
-    def move(self, dx, dy):
+    def jump(self):
+        self.isjump = 1
 
-        # Move each axis separately. Note that this checks for collisions both times.
-        if dx != 0:
-            self.move_single_axis(dx, 0)
-        if dy != 0:
-            self.move_single_axis(0, dy)
+    def update(self):
+        if self.isjump:
+            if self.v > 0:
+                dy = -(.25*self.v*self.v)
+            else:
+                dy = (.25*self.v*self.v)
 
-    def move_single_axis(self, dx, dy):
+            self.rect.y += dy
+            self.v -= .25
 
-        # Move the rect
-        self.rect.x += dx
-        self.rect.y +=
+            for wall in walls:
+                if self.rect.colliderect(wall.rect):
+                    print("Bottom1: ")
+                    print(self.rect.bottom)
+                    print(wall.rect.top)
 
-        # # If you collide with a wall, move out based on velocity
-        # for wall in walls:
-        #     if self.rect.colliderect(wall.rect):
-        #         if dx > 0: # Moving right; Hit the left side of the wall
-        #             self.rect.right = wall.rect.left
-        #         if dx < 0: # Moving left; Hit the right side of the wall
-        #             self.rect.left = wall.rect.right
-        #         if dy > 0: # Moving down; Hit the top side of the wall
-        #             self.rect.bottom = wall.rect.top
-        #         if dy < 0: # Moving up; Hit the bottom side of the wall
-        #             self.rect.top = wall.rect.bottom
-
-while running:
-
-    clock.tick(60)
-
-    for e in pygame.event.get():
-        if e.type == pygame.QUIT:
-            running = False
-        if e.type == pygame.KEYDOWN and e.key == pygame.K_ESCAPE:
-            running = False
-
-    # Move the player if an arrow key is pressed
-    key = pygame.key.get_pressed()
-    if key[pygame.K_LEFT]:
-        player.move(-3, 0, walls)
-    if key[pygame.K_RIGHT]:
-        player.move(3, 0, walls)
-    if key[pygame.K_UP]:
-        player.move(0, -3, walls)
-    if key[pygame.K_DOWN]:
-        player.move(0, 3, walls)
-
-    # Just added this to make it slightly fun ;)
-    # if player.rect.colliderect(end_rect):
-    #     raise SystemExit, "You win!"
-
-    # making cat move
-    # pressed_keys = pygame.key.get_pressed()
-    # player.update(pressed_keys)
-
-    # Draw the scene
-    screen.fill((0, 0, 0))
-    for wall in walls:
-        pygame.draw.rect(screen, (255, 255, 255), wall.rect)
-    pygame.draw.rect(screen, (255, 0, 0), end_rect)
-    # pygame.draw.rect(screen, (255, 200, 0), player.rect)
-    screen.blit(player.image, player.rect)
-    pygame.display.flip()
+                    if dy> 0: # Moving down; Hit the top side of the wall
+                        self.rect.bottom = wall.rect.top
+                        self.isjump = 0
+                        self.v=8
+                    # if not self.rect.colliderect(wall.rect) and not self.isjump:
+                    #     self.isjump= 1
+                    #     self.v = -4
+                print("Bottom2: ")
+                print(self.rect.bottom)
+            if self.rect.y >= 260:
+                self.rect.y = 260
+                self.isjump = 0
+                self.v=8
+                print("Bottom3: ")
+                print(self.rect.bottom)
+class Wall(object):
+    def __init__(self, pos):
+        walls.append(self)
+        self.rect = pygame.Rect(pos[0], pos[1], 50, 50)

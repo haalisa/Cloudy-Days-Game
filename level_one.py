@@ -12,8 +12,7 @@ import transitions
 from transitions import *
 import random
 
-import start_menu
-from movement import Player
+# import start_menu
 from movement import Cat
 
 def text_objects(text, font):
@@ -42,7 +41,7 @@ def levelone ():
     transitions.init ( screen, width, height )
 
     truevar = True
-    runSecondTime = False
+
     clock = pygame.time.Clock()
 
     player = Cat()
@@ -90,17 +89,18 @@ def levelone ():
         #     startButton = pygame.draw.rect(screen, white,button2Pos)
 
         #if button is clicked
+
         click = pygame.mouse.get_pressed()
 
         key = pygame.key.get_pressed()
         if key[pygame.K_LEFT]:
-            player.move(-3, 0, walls)
+            player.move(-1, 0)
         if key[pygame.K_RIGHT]:
-            player.move(3, 0, walls)
+            player.move(1, 0)
         if key[pygame.K_UP]:
-            player.move(0, -3, walls)
+            player.move(0, -1)
         if key[pygame.K_DOWN]:
-            player.move(0, 3, walls)
+            player.move(0, 1)
         #
         # if runSecondTime == True:
         #     if click[0] == 1 and goBackButton.collidepoint(mouse):
@@ -126,9 +126,9 @@ def levelone ():
 
         pygame.display.flip()
 
-        clock.tick(60)
+        # clock.tick(60)
 
-        runSecondTime = True
+
 
 
 
