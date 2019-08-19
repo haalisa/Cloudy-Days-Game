@@ -113,13 +113,15 @@ def levelone ():
         # screen.blit(TextSurf3,TextRect3)
         # screen.blit(TextSurf4,TextRect4)
 
+        screen.blit(player.image, player.rect)
+
         pygame.display.flip()
 
         clock.tick(60)
 
         runSecondTime = True
 
-        # screen.blit(player.image, player.rect)
+
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
