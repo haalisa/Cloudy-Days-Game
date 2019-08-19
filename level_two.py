@@ -6,6 +6,8 @@ from pygame.locals import *
 # from transitions import *
 # import random
 
+import cereal_game
+
 # import start_menu this is what is causing only lvl 1 to run
 
 def text_objects(text, font):
@@ -32,39 +34,61 @@ def leveltwo ():
 
     truevar = True
     clock = pygame.time.Clock()
-    click = pygame.mouse.get_pressed()
-    mouse = pygame.mouse.get_pos()
+
 
     clock.tick(180)
 
+    pygame.init()
+
     while truevar:
-        kitchen = pygame.image.load("pics/lvl-bgs/kitchen.png").convert()
-        kitchen = pygame.transform.scale(kitchen, (width,height))
-        screen.blit(kitchen, (0,0))
+        click = pygame.mouse.get_pressed()
+        mouse = pygame.mouse.get_pos()
 
-        chair1 = pygame.image.load("pics/lvl-bgs/chair1.png")
-        chair1 = pygame.transform.scale(chair1, (width,height))
-        screen.blit(chair1, (0,0))
+        cerealRectPos = (520,126,60,78)
+        cerealRect = pygame.draw.rect(screen, white, cerealRectPos)
 
-        chair2 = pygame.image.load("pics/lvl-bgs/chair2.png")
-        chair2 = pygame.transform.scale(chair2, (width,height))
-        screen.blit(chair2, (0,0))
+        full_kitchen = pygame.image.load("pics/lvl-bgs/full_kitchen.png").convert()
+        full_kitchen = pygame.transform.scale(full_kitchen, (width,height))
+        screen.blit(full_kitchen, (0,0))
 
-        bowl = pygame.image.load("pics/lvl-bgs/bowl.png")
-        bowl = pygame.transform.scale(bowl, (width,height))
-        screen.blit(bowl, (0,0))
+        # cereal = pygame.image.load("pics/lvl-bgs/cereal.png")
+        # cereal = pygame.transform.scale(cereal, (width,height))
+        # test_rect2 = cereal.get_rect()
+        # screen.blit(cereal, (0,0))
 
-        cereal = pygame.image.load("pics/lvl-bgs/cereal.png")
-        cereal = pygame.transform.scale(cereal, (width,height))
-        screen.blit(cereal, (0,0))
+        if click[0] == 1 and cerealRect.collidepoint(mouse):
+            truevar = False
+            cereal_game.cerealgame()
 
-        door_out = pygame.image.load("pics/lvl-bgs/doorout.png")
-        door_out = pygame.transform.scale(door_out, (width,height))
-        screen.blit(door_out, (0,0))
+        # screen.blit(cerealRect,520, 126)
 
-        kitchen_door = pygame.image.load("pics/lvl-bgs/kitchen_door.png")
-        kitchen_door = pygame.transform.scale(kitchen_door, (width,height))
-        screen.blit(kitchen_door, (0,0))
+        # kitchen = pygame.image.load("pics/lvl-bgs/kitchen.png").convert()
+        # kitchen = pygame.transform.scale(kitchen, (width,height))
+        # screen.blit(kitchen, (0,0))
+        #
+        # chair1 = pygame.image.load("pics/lvl-bgs/chair1.png")
+        # chair1 = pygame.transform.scale(chair1, (width,height))
+        # screen.blit(chair1, (0,0))
+        #
+        # chair2 = pygame.image.load("pics/lvl-bgs/chair2.png")
+        # chair2 = pygame.transform.scale(chair2, (width,height))
+        # screen.blit(chair2, (0,0))
+        #
+        # bowl = pygame.image.load("pics/lvl-bgs/bowl.png")
+        # bowl = pygame.transform.scale(bowl, (width,height))
+        # screen.blit(bowl, (0,0))
+        #
+        # cereal = pygame.image.load("pics/lvl-bgs/cereal.png")
+        # cereal = pygame.transform.scale(cereal, (width,height))
+        # screen.blit(cereal, (0,0))
+        #
+        # door_out = pygame.image.load("pics/lvl-bgs/doorout.png")
+        # door_out = pygame.transform.scale(door_out, (width,height))
+        # screen.blit(door_out, (0,0))
+        #
+        # kitchen_door = pygame.image.load("pics/lvl-bgs/kitchen_door.png")
+        # kitchen_door = pygame.transform.scale(kitchen_door, (width,height))
+        # screen.blit(kitchen_door, (0,0))
 
         pygame.display.flip()
 
