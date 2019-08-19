@@ -13,7 +13,7 @@ def text_objects(text, font):
     textSurface = font.render(text, True, black)
     return textSurface, textSurface.get_rect()
 
-def leveltwo ():
+def leveltwooutside ():
 
     # flags = FULLSCREEN | DOUBLEBUF
 
@@ -29,26 +29,26 @@ def leveltwo ():
     width, height = 1200,600
     screen = pygame.display.set_mode((width, height))
     transitions.init ( screen, width, height )
+    hideSpeech = True
 
     truevar = True
     clock = pygame.time.Clock()
     click = pygame.mouse.get_pressed()
     mouse = pygame.mouse.get_pos()
 
+    screen.fill(lightBlue)
+
     clock.tick(180)
 
     while truevar:
-        kitchen = pygame.image.load("pics/lvl-bgs/kitchen.png").convert()
-        kitchen = pygame.transform.scale(kitchen, (width,height))
-        screen.blit(kitchen, (0,0))
 
-        chair1 = pygame.image.load("pics/lvl-bgs/chair1.png")
-        chair1 = pygame.transform.scale(chair1, (width,height))
-        screen.blit(chair1, (0,0))
+        bus_stop = pygame.image.load("pics/lvl-bgs/bus_stop.png")
+        bus_stop = pygame.transform.scale(bus_stop, (width,height))
+        screen.blit(bus_stop, (0,0))
 
-        chair2 = pygame.image.load("pics/lvl-bgs/chair2.png")
-        chair2 = pygame.transform.scale(chair2, (width,height))
-        screen.blit(chair2, (0,0))
+        grass = pygame.image.load("pics/lvl-bgs/grass.png")
+        grass = pygame.transform.scale(grass, (width,height))
+        screen.blit(grass, (0,0))
 
         pygame.display.flip()
 
@@ -67,4 +67,5 @@ def leveltwo ():
             elif event.type == pygame.MOUSEBUTTONDOWN:
                 click_img = event.pos
 
-leveltwo()
+
+leveltwooutside()

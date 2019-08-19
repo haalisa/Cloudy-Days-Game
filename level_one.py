@@ -48,9 +48,25 @@ def levelone ():
     player = Cat()
 
     while truevar:
-        # bg = pygame.image.load("pics/lvl-bgs/bedroom.png").convert()
-        # bg = pygame.transform.scale(bg, (width,height))
-        # screen.blit(bg, (0,0))
+        bedroom = pygame.image.load("pics/lvl-bgs/bedroom.png").convert()
+        bedroom = pygame.transform.scale(bedroom, (width,height))
+        screen.blit(bedroom, (0,0))
+
+        bed = pygame.image.load("pics/lvl-bgs/bed.png")
+        bed = pygame.transform.scale(bed, (width,height))
+        screen.blit(bed, (0,0))
+
+        bedroom_door = pygame.image.load("pics/lvl-bgs/bedroom_door.png")
+        bedroom_door = pygame.transform.scale(bedroom_door, (width,height))
+        screen.blit(bedroom_door, (0,0))
+
+        catdoor = pygame.image.load("pics/lvl-bgs/catdoor.png")
+        catdoor = pygame.transform.scale(catdoor, (width,height))
+        screen.blit(catdoor, (0,0))
+
+        dresser = pygame.image.load("pics/lvl-bgs/dresser.png")
+        dresser = pygame.transform.scale(dresser, (width,height))
+        screen.blit(dresser, (0,0))
 
         # #player
         # krabsPos = [0,100] #player position
@@ -103,7 +119,7 @@ def levelone ():
 
         runSecondTime = True
 
-        screen.blit(player.image, player.rect)
+        # screen.blit(player.image, player.rect)
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
