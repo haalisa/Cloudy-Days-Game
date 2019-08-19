@@ -92,6 +92,15 @@ def levelone ():
         #if button is clicked
         click = pygame.mouse.get_pressed()
 
+        key = pygame.key.get_pressed()
+        if key[pygame.K_LEFT]:
+            player.move(-3, 0, walls)
+        if key[pygame.K_RIGHT]:
+            player.move(3, 0, walls)
+        if key[pygame.K_UP]:
+            player.move(0, -3, walls)
+        if key[pygame.K_DOWN]:
+            player.move(0, 3, walls)
         #
         # if runSecondTime == True:
         #     if click[0] == 1 and goBackButton.collidepoint(mouse):

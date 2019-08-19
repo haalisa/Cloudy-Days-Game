@@ -59,7 +59,7 @@ class Player(object):
 
         # Move the rect
         self.rect.x += dx
-        self.rect.y += dy
+        self.rect.y +=
 
         # # If you collide with a wall, move out based on velocity
         # for wall in walls:
@@ -72,3 +72,41 @@ class Player(object):
         #             self.rect.bottom = wall.rect.top
         #         if dy < 0: # Moving up; Hit the bottom side of the wall
         #             self.rect.top = wall.rect.bottom
+
+while running:
+
+    clock.tick(60)
+
+    for e in pygame.event.get():
+        if e.type == pygame.QUIT:
+            running = False
+        if e.type == pygame.KEYDOWN and e.key == pygame.K_ESCAPE:
+            running = False
+
+    # Move the player if an arrow key is pressed
+    key = pygame.key.get_pressed()
+    if key[pygame.K_LEFT]:
+        player.move(-3, 0, walls)
+    if key[pygame.K_RIGHT]:
+        player.move(3, 0, walls)
+    if key[pygame.K_UP]:
+        player.move(0, -3, walls)
+    if key[pygame.K_DOWN]:
+        player.move(0, 3, walls)
+
+    # Just added this to make it slightly fun ;)
+    # if player.rect.colliderect(end_rect):
+    #     raise SystemExit, "You win!"
+
+    # making cat move
+    # pressed_keys = pygame.key.get_pressed()
+    # player.update(pressed_keys)
+
+    # Draw the scene
+    screen.fill((0, 0, 0))
+    for wall in walls:
+        pygame.draw.rect(screen, (255, 255, 255), wall.rect)
+    pygame.draw.rect(screen, (255, 0, 0), end_rect)
+    # pygame.draw.rect(screen, (255, 200, 0), player.rect)
+    screen.blit(player.image, player.rect)
+    pygame.display.flip()
