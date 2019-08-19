@@ -38,10 +38,25 @@ def levelthree ():
 
     clock.tick(180)
 
+    screen.fill(white)
+
     while truevar:
-        bgLockers = pygame.image.load("pics/lvl-bgs/lockers.jpg").convert()
-        bgLockers = pygame.transform.scale(bgLockers, (width,height))
-        screen.blit(bgLockers, (0,0))
+
+        lockers = pygame.image.load("pics/lvl-bgs/lockers.png")
+        lockers = pygame.transform.scale(lockers, (width,height))
+        screen.blit(lockers, (0,0))
+
+        school_door = pygame.image.load("pics/lvl-bgs/school_door.png")
+        school_door = pygame.transform.scale(school_door, (width,height))
+        screen.blit(school_door, (0,0))
+
+        school_floor = pygame.image.load("pics/lvl-bgs/school_floor.png")
+        school_floor = pygame.transform.scale(school_floor, (width,height))
+        screen.blit(school_floor, (0,0))
+
+        if click[0] == 1 and school_door.collidepoint(mouse):
+            print(click)
+            maze()
 
         pygame.display.flip()
 
