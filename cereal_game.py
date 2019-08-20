@@ -1,4 +1,6 @@
-#kitchen
+# cereal game
+# to do: successfully make oreo add point + disappear at same time
+# movement needs work, too
 
 import pygame
 from pygame.locals import *
@@ -9,12 +11,40 @@ from movement2 import *
 
 # import start_menu this is what is causing only lvl 1 to run
 
+#defining screen
+width, height = 1200,600
+screen = pygame.display.set_mode((width, height))
+
 class Oreo(pygame.sprite.Sprite):
+
     def __init__(self):
-        o = pygame.draw.circle(screen, brown, (x,y),20,10)
+        self.image = pygame.image.load("pics/oreo.png")
+        self.image.set_colorkey((255, 255, 255), RLEACCEL)
+        self.image = pygame.transform.scale(self.image, (50,50))
         super(Oreo,self).__init__()
-        self.image = o
-        self.circle = pygame.Circle(20, y, 20, 10)
+        self.rect= self.image.get_rect(
+            center = (random.randint(0,600), random.randint(5,10))
+        )
+
+    def update(self):
+        # fall until its y is more than 650
+        if self.rect.y < 650:
+            self.rect.y += 1
+
+        # if it falls offscreen, reappear to top and fall again
+        if self.rect.y >= 650:
+            self.rect.x = random.randint(0,1200)
+            self.rect.y = random.randint(-150,-10)
+
+        # if touching, add point and disappear
+        if player.rect.colliderect(o.rect):
+            self.rect.x = random.randint(0,1200)
+            self.rect.y = random.randint(-150,-10)
+            # cereal_count += 1
+
+player = Cat()
+
+o = Oreo()
 
 def text_objects(text, font):
     black = (0,0,0)
@@ -22,7 +52,6 @@ def text_objects(text, font):
     return textSurface, textSurface.get_rect()
 
 def cerealgame ():
-
     pygame.init()
     # flags = FULLSCREEN | DOUBLEBUF
 
@@ -35,80 +64,25 @@ def cerealgame ():
     darkerBlue = (114,111,161)
     brown = (111,83,76)
 
-    #defining screen
-    width, height = 1200,600
-    screen = pygame.display.set_mode((width, height))
     # transitions.init ( screen, width, height )
 
     truevar = True
     clock = pygame.time.Clock()
 
-
     clock.tick(60)
 
-    x = random.randint(0,1200)
-    y = random.randint(-100,-10)
-
-    newx = random.randint(0,1200)
-    newy = random.randint(-250,-10)
-
-    newestx = random.randint(0,1200)
-    newesty = random.randint(-500,-250)
-
+    # click = pygame.mouse.get_pressed()
+    # mouse = pygame.mouse.get_pos()
     cereal_count = 0
-
-    player = Cat()
-
 
     while truevar:
         screen.fill(darkBlue)
-        click = pygame.mouse.get_pressed()
-        mouse = pygame.mouse.get_pos()
 
-        # creates 3 OREO O's
-        o = pygame.draw.circle(screen, brown, (x,y),20,10)
-        # # o2 = pygame.draw.circle(screen, brown, (newx,newy),20,10)
-        # # o3 = pygame.draw.circle(screen, brown, (newx,newy),20,10)
-        # o = pygame.draw.rect(screen, brown, (20,y,100,100))
+        # runs the update function
+        o.update()
 
-        # makes 3 OREO O's fall
-        if y < 650:
-            y = y + 1
-        elif y >= 650:
-            x = random.randint(0,1200)
-            y = random.randint(-150,-10)
-
-        if newy < 650:
-            newy = newy + 1
-        elif newy >= 650:
-            newx = random.randint(0,1200)
-            newy = random.randint(-500,-200)
-
-        if newesty < 650:
-            newesty = newesty + 1
-        elif newesty >= 650:
-            newestx = random.randint(0,1200)
-            newesty = random.randint(-700,-500)
-
-        # tracks cereal collected
-        if player.rect.colliderect(o.rect):
-            cereal_count += 1
-            print("hello world")
-
-        #         self.rect= self.image.get_rect(
-        #             center =(random.randint(0,600), random.randint(200,400))
-        #         )
-        #         self.radius = int(self.rect.width / 2)
-
-        # collide = pygame.sprite.collide_mask(player, o)
-        # if collide:
-        #     print("collided")
-        # if player_surface.collidepoint(o):
-        #     cereal_count = cereal_count + 1
-        # elif player.collidepoint(o2):
-        #     cereal_count = cereal_count + 1
-        # elif player.collidepoint(o3):
-        #     cereal_count = cereal_count + 1
+        # draws oreo
+        screen.blit(o.image, o.rect)
 
         # defining text score
         score_text = pygame.font.Font('fonts/Roboto-Light.ttf', 50)
@@ -121,6 +95,7 @@ def cerealgame ():
         TextRect_cc.center = (250,50)
         screen.blit(TextSurf_cc,TextRect_cc)
 
+        # draws the cat
         screen.blit(player.image, player.rect)
 
         pygame.display.flip()
@@ -140,4 +115,4 @@ def cerealgame ():
             # elif event.type == pygame.MOUSEBUTTONDOWN:
             #     click_img = event.pos
 
-cerealgame ()
+cerealgame () #take this out later
