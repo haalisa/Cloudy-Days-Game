@@ -42,14 +42,13 @@ all_sprites.add(player)
 #     coins.add(i)
 #     all_sprites.add(i)
 
-block = Wall((100, 260))
+block = Wall((200, 250))
 
 while True:
     screen.fill(0)
     screen.blit(forest,(0,0))
     player.update()
     rectangle = pygame.draw.rect(screen, (0,0,0), block)
-
 
     key = pygame.key.get_pressed()
     if key[pygame.K_LEFT]:
