@@ -4,7 +4,7 @@ import random
 import pygame
 from pygame.locals import *
 
-import level_three
+import level_three_aftermaze
 
 flags = FULLSCREEN | DOUBLEBUF
 
@@ -217,13 +217,13 @@ def main():
         # pygame.draw.rect(screen, (255, 200, 0), player.rect)
         mouse = pygame.mouse.get_pos()
         print(mouse)
-        if player.rect.x > 1200:
+        if player.rect.x > 100:
             # youwin = pygame.font.Font('fonts/arcade.ttf', 100)
             # TextSurf_yw, TextRect_yw = text_objects("YOU WIN", youwin)
             # TextRect_yw.center = (600,400)
             # screen.blit(TextSurf_yw, TextRect_yw)
             # pygame.time.delay(5000)
-            level_three.levelthree()
+            level_three_aftermaze.levelthreeaftermaze()
 
         screen.blit(player.image, player.rect)
         pygame.display.flip()
