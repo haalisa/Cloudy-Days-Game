@@ -1,9 +1,9 @@
 import pygame
 from pygame.locals import *
 import random
-from movement3 import Cat
+from movement import Cat
 
-from movement3 import Wall
+from movement import Wall
 # from movement import Cat
 #
 # from movement import Wall
@@ -46,12 +46,13 @@ all_sprites.add(player)
 #     all_sprites.add(i)
 
 block = Wall((200, 250))
-
+block1 = Wall((250,250))
 while True:
     screen.fill(0)
     screen.blit(forest,(0,0))
     player.update()
     rectangle = pygame.draw.rect(screen, (0,0,0), block)
+    rectangle = pygame.draw.rect(screen, (0,0,0), block1)
 
     key = pygame.key.get_pressed()
     if key[pygame.K_LEFT]:
