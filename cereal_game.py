@@ -1,6 +1,7 @@
 # cereal game
-# to do: successfully make oreo add point + disappear at same time
-# movement needs work, too
+# to do:
+# link to kitchen
+# make multiple oreos if enough time
 
 import pygame
 from pygame.locals import *
