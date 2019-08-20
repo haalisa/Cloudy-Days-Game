@@ -7,6 +7,7 @@ from pygame.locals import *
 # import random
 
 import cereal_game
+import level_two_outside
 from movement import *
 
 # import start_menu this is what is causing only lvl 1 to run
@@ -67,6 +68,13 @@ def leveltwo ():
                 didplaycereal = True
                 cereal_game.cerealgame()
                 continue
+
+        # if didplaycereal == True:
+        #     if player.rect.x < -100:
+        #         level_two_outside.leveltwooutside()
+
+        if player.rect.x < -100:
+            level_two_outside.leveltwooutside()
 
         screen.blit(player.image, player.rect)
         player.update()
