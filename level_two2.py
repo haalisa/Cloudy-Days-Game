@@ -49,6 +49,8 @@ def leveltwo ():
 
     didplaycereal = False
 
+    y = player.rect.y
+
     while truevar:
         click = pygame.mouse.get_pressed()
         mouse = pygame.mouse.get_pos()
