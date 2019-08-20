@@ -6,6 +6,8 @@ import transitions
 from transitions import *
 import random
 
+from movement import *
+
 # import start_menu
 
 def text_objects(text, font):
@@ -36,19 +38,27 @@ def leveltwooutside ():
     click = pygame.mouse.get_pressed()
     mouse = pygame.mouse.get_pos()
 
-    screen.fill(lightBlue)
-
     clock.tick(180)
 
-    while truevar:
+    player = Cat()
 
-        bus_stop = pygame.image.load("pics/lvl-bgs/bus_stop.png")
-        bus_stop = pygame.transform.scale(bus_stop, (width,height))
+    bus_stop = pygame.image.load("pics/lvl-bgs/full_busstop.png")
+    bus_stop = pygame.transform.scale(bus_stop, (width,height))
+
+    while truevar:
+        #draw bg
         screen.blit(bus_stop, (0,0))
 
-        grass = pygame.image.load("pics/lvl-bgs/grass.png")
-        grass = pygame.transform.scale(grass, (width,height))
-        screen.blit(grass, (0,0))
+        screen.blit(player.image, player.rect)
+        player.update()
+
+        key = pygame.key.get_pressed()
+        if key[pygame.K_LEFT]:
+            player.move(-2)
+        if key[pygame.K_RIGHT]:
+            player.move(2)
+        if key[pygame.K_UP]:
+            player.jump()
 
         pygame.display.flip()
 
@@ -66,6 +76,3 @@ def leveltwooutside ():
 
             elif event.type == pygame.MOUSEBUTTONDOWN:
                 click_img = event.pos
-
-
-leveltwooutside()

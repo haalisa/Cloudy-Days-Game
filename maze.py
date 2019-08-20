@@ -216,7 +216,7 @@ def main():
         pygame.draw.rect(screen, (255, 0, 0), end_rect)
         # pygame.draw.rect(screen, (255, 200, 0), player.rect)
         mouse = pygame.mouse.get_pos()
-        print(mouse)
+        # print(mouse)
         if player.rect.x > 100:
             # youwin = pygame.font.Font('fonts/arcade.ttf', 100)
             # TextSurf_yw, TextRect_yw = text_objects("YOU WIN", youwin)
