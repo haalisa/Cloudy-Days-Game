@@ -7,6 +7,7 @@ from pygame.locals import *
 # import random
 
 import cereal_game
+from movement import *
 
 # import start_menu this is what is causing only lvl 1 to run
 
@@ -40,6 +41,11 @@ def leveltwo ():
 
     pygame.init()
 
+    player = Cat()
+
+    full_kitchen = pygame.image.load("pics/lvl-bgs/full_kitchen.png").convert()
+    full_kitchen = pygame.transform.scale(full_kitchen, (width,height))
+
     while truevar:
         click = pygame.mouse.get_pressed()
         mouse = pygame.mouse.get_pos()
@@ -47,8 +53,6 @@ def leveltwo ():
         cerealRectPos = (520,126,60,78)
         cerealRect = pygame.draw.rect(screen, white, cerealRectPos)
 
-        full_kitchen = pygame.image.load("pics/lvl-bgs/full_kitchen.png").convert()
-        full_kitchen = pygame.transform.scale(full_kitchen, (width,height))
         screen.blit(full_kitchen, (0,0))
 
         # cereal = pygame.image.load("pics/lvl-bgs/cereal.png")
@@ -59,6 +63,17 @@ def leveltwo ():
         if click[0] == 1 and cerealRect.collidepoint(mouse):
             truevar = False
             cereal_game.cerealgame()
+
+        screen.blit(player.image, player.rect)
+        player.update()
+
+        key = pygame.key.get_pressed()
+        if key[pygame.K_LEFT]:
+            player.move(-2)
+        if key[pygame.K_RIGHT]:
+            player.move(2)
+        if key[pygame.K_UP]:
+            player.jump()
 
         # screen.blit(cerealRect,520, 126)
 

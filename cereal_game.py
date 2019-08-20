@@ -8,10 +8,10 @@ from pygame.locals import *
 # import transitions
 # from transitions import *
 import random
-from movement2 import *
+from movement import *
 
 # import start_menu this is what is causing only lvl 1 to run
-# import level_two
+import level_two_aftergame
 
 #defining screen
 width, height = 1200,600
@@ -86,8 +86,12 @@ def cerealgame ():
 
     # click = pygame.mouse.get_pressed()
     # mouse = pygame.mouse.get_pos()
+
+    ground = (0,500,1200,200)
+
     while truevar:
-        screen.fill(darkBlue)
+        screen.fill(lightBlue)
+        pygame.draw.rect(screen,brown,ground)
 
         #defining text for instructions
         instructions = pygame.font.Font('fonts/Roboto-Light.ttf', 30)
@@ -133,13 +137,23 @@ def cerealgame ():
                 all_sprites.add(new_oreo)
         oreos.update()
 
-        # if o.cereal_count >= 1:
-        #     # truevar = False
-        #     level_two.leveltwo()
+        player.update()
+
+        key = pygame.key.get_pressed()
+        if key[pygame.K_LEFT]:
+            player.move(-2)
+        if key[pygame.K_RIGHT]:
+            player.move(2)
+        if key[pygame.K_UP]:
+            player.jump()
+
+        if o.cereal_count >= 1:
+            # truevar = False
+            level_two_aftergame.leveltwoaftergame()
 
         pygame.display.flip()
 
             # elif event.type == pygame.MOUSEBUTTONDOWN:
             #     click_img = event.pos
 
-cerealgame () #take this out later
+# cerealgame () #take this out later
