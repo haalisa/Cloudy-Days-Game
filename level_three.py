@@ -6,7 +6,8 @@ import transitions
 from transitions import *
 import random
 import maze
-
+from movement import Cat
+from movement import Wall
 # import level_two
 
 def text_objects(text, font):
@@ -36,32 +37,37 @@ def levelthree ():
     truevar = True
     clock = pygame.time.Clock()
 
+    lockers = pygame.image.load("pics/lvl-bgs/lockers.png")
 
-    clock.tick(60)
+    school_door = pygame.image.load("pics/lvl-bgs/school_door.png")
 
+    school_floor = pygame.image.load("pics/lvl-bgs/school_floor.png")
     screen.fill(white)
-
+    player= Cat()
     while truevar:
         mouse = pygame.mouse.get_pos()
         click = pygame.mouse.get_pressed()
-        lockers = pygame.image.load("pics/lvl-bgs/lockers.png")
-        lockers = pygame.transform.scale(lockers, (width,height))
         screen.blit(lockers, (0,0))
 
-        school_door = pygame.image.load("pics/lvl-bgs/school_door.png")
-        school_door = pygame.transform.scale(school_door, (width,height))
         screen.blit(school_door, (0,0))
 
-        school_floor = pygame.image.load("pics/lvl-bgs/school_floor.png")
-        school_floor = pygame.transform.scale(school_floor, (width,height))
         screen.blit(school_floor, (0,0))
-        test_rect = school_door.get_rect()
+        screen.blit(player.image, player.rect)
 
-        # if door is clicked then go to maze game 
+        player.update()
+        key = pygame.key.get_pressed()
+        if key[pygame.K_LEFT]:
+            player.move(-2)
+        if key[pygame.K_RIGHT]:
+            player.move(2)
+        if key[pygame.K_UP]:
+            player.jump()
+
+        test_rect = school_door.get_rect()
+        # if door is clicked then go to maze game
         if click[0] == 1 and test_rect.collidepoint(mouse):
             truevar = False
             maze.main()
-        print(click)
 
         pygame.display.flip()
 
