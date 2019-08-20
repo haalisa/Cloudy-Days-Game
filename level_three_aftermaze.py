@@ -15,7 +15,7 @@ def text_objects(text, font):
     textSurface = font.render(text, True, black)
     return textSurface, textSurface.get_rect()
 
-def levelthree ():
+def levelthreeaftermaze ():
 
     flags = FULLSCREEN | DOUBLEBUF
 
@@ -60,11 +60,11 @@ def levelthree ():
         if key[pygame.K_UP]:
             player.jump()
 
-        if key[pygame.K_RETURN]:
-            if player.rect.x >900 and player.rect.x <1100:
-                truevar = False
-                print("hi")
-                maze.main()
+        # if key[pygame.K_RETURN]:
+        #     if player.rect.x >900 and player.rect.x <1100:
+        #         truevar = False
+        #         print("hi")
+        #         maze.main()
 
         pygame.display.flip()
 
@@ -82,7 +82,3 @@ def levelthree ():
 
             elif event.type == pygame.MOUSEBUTTONDOWN:
                 click_img = event.pos
-
-
-
-levelthree()

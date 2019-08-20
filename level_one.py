@@ -14,7 +14,7 @@ import random
 
 # import start_menu
 from movement import Cat
-
+from movement import Wall
 def text_objects(text, font):
     black = (0,0,0)
     textSurface = font.render(text, True, black)
@@ -45,29 +45,27 @@ def levelone ():
     clock = pygame.time.Clock()
 
     player = Cat()
-
+    bedroom = pygame.image.load("pics/lvl-bgs/full_bedroom2.png").convert()
+    bed = Wall((50, 400))
     while truevar:
-        bedroom = pygame.image.load("pics/lvl-bgs/bedroom.png").convert()
-        bedroom = pygame.transform.scale(bedroom, (width,height))
+        rectangle = pygame.draw.rect(screen, (0,0,0), bed)
         screen.blit(bedroom, (0,0))
+        # bed = pygame.image.load("pics/lvl-bgs/bed.png")
+        # bed = pygame.transform.scale(bed, (width,height))
+        # screen.blit(bed, (0,0))
 
-        bed = pygame.image.load("pics/lvl-bgs/bed.png")
-        bed = pygame.transform.scale(bed, (width,height))
-        screen.blit(bed, (0,0))
+        # bedroom_door = pygame.image.load("pics/lvl-bgs/bedroom_door.png")
+        # bedroom_door = pygame.transform.scale(bedroom_door, (width,height))
+        # screen.blit(bedroom_door, (0,0))
+        #
+        # catdoor = pygame.image.load("pics/lvl-bgs/catdoor.png")
+        # catdoor = pygame.transform.scale(catdoor, (width,height))
+        # screen.blit(catdoor, (0,0))
+        #
+        # dresser = pygame.image.load("pics/lvl-bgs/dresser.png")
+        # dresser = pygame.transform.scale(dresser, (width,height))
+        # screen.blit(dresser, (0,0))
 
-        bedroom_door = pygame.image.load("pics/lvl-bgs/bedroom_door.png")
-        bedroom_door = pygame.transform.scale(bedroom_door, (width,height))
-        screen.blit(bedroom_door, (0,0))
-
-        catdoor = pygame.image.load("pics/lvl-bgs/catdoor.png")
-        catdoor = pygame.transform.scale(catdoor, (width,height))
-        screen.blit(catdoor, (0,0))
-
-        dresser = pygame.image.load("pics/lvl-bgs/dresser.png")
-        dresser = pygame.transform.scale(dresser, (width,height))
-        screen.blit(dresser, (0,0))
-
-        # #player
         # krabsPos = [0,100] #player position
         # krabs = pygame.image.load("pics/krabs.png")
         # # krabs = pygame.Surface.get_rect
@@ -90,17 +88,15 @@ def levelone ():
 
         #if button is clicked
 
-        click = pygame.mouse.get_pressed()
+        player.update()
 
         key = pygame.key.get_pressed()
         if key[pygame.K_LEFT]:
-            player.move(-1, 0)
+            player.move(-2)
         if key[pygame.K_RIGHT]:
-            player.move(1, 0)
+            player.move(2)
         if key[pygame.K_UP]:
-            player.move(0, -1)
-        if key[pygame.K_DOWN]:
-            player.move(0, 1)
+            player.jump()
         #
         # if runSecondTime == True:
         #     if click[0] == 1 and goBackButton.collidepoint(mouse):
@@ -121,16 +117,10 @@ def levelone ():
         #
         # screen.blit(TextSurf3,TextRect3)
         # screen.blit(TextSurf4,TextRect4)
-
+        clock.tick(150)
         screen.blit(player.image, player.rect)
 
         pygame.display.flip()
-
-        # clock.tick(60)
-
-
-
-
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:

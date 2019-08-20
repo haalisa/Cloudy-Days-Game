@@ -4,6 +4,8 @@ import random
 import pygame
 from pygame.locals import *
 
+import level_three_aftermaze
+
 flags = FULLSCREEN | DOUBLEBUF
 
 class Cat (pygame.sprite.Sprite):
@@ -167,6 +169,10 @@ for row in level:
     y += 16
     x = 0
 
+def text_objects(text, font):
+    black = (0,0,0)
+    textSurface = font.render(text, True, black)
+    return textSurface, textSurface.get_rect()
 
 def main():
     running = True
@@ -209,6 +215,16 @@ def main():
             pygame.draw.rect(screen, (255, 255, 255), wall.rect)
         pygame.draw.rect(screen, (255, 0, 0), end_rect)
         # pygame.draw.rect(screen, (255, 200, 0), player.rect)
+        mouse = pygame.mouse.get_pos()
+        print(mouse)
+        if player.rect.x > 100:
+            # youwin = pygame.font.Font('fonts/arcade.ttf', 100)
+            # TextSurf_yw, TextRect_yw = text_objects("YOU WIN", youwin)
+            # TextRect_yw.center = (600,400)
+            # screen.blit(TextSurf_yw, TextRect_yw)
+            # pygame.time.delay(5000)
+            level_three_aftermaze.levelthreeaftermaze()
+
         screen.blit(player.image, player.rect)
         pygame.display.flip()
 
