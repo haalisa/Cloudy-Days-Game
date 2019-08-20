@@ -37,24 +37,21 @@ def levelthree ():
     truevar = True
     clock = pygame.time.Clock()
 
-    lockers = pygame.image.load("pics/lvl-bgs/lockers.png")
-
-    school_door = pygame.image.load("pics/lvl-bgs/school_door.png")
-
-    school_floor = pygame.image.load("pics/lvl-bgs/school_floor.png")
-    screen.fill(white)
+    lockers = pygame.image.load("pics/lvl-bgs/full_lockers.png").convert()
+    school_door = pygame.image.load("pics/lvl-bgs/kitchen_door.png")
+    block_rect = pygame.Rect(950, 200, 200, 335)
     player= Cat()
     while truevar:
         mouse = pygame.mouse.get_pos()
         click = pygame.mouse.get_pressed()
+
+
         screen.blit(lockers, (0,0))
+        # block = pygame.draw.rect(screen, (0,0,0), block_rect)
 
-        screen.blit(school_door, (0,0))
-
-        screen.blit(school_floor, (0,0))
         screen.blit(player.image, player.rect)
-
         player.update()
+
         key = pygame.key.get_pressed()
         if key[pygame.K_LEFT]:
             player.move(-2)
@@ -63,11 +60,11 @@ def levelthree ():
         if key[pygame.K_UP]:
             player.jump()
 
-        test_rect = school_door.get_rect()
-        # if door is clicked then go to maze game
-        if click[0] == 1 and test_rect.collidepoint(mouse):
-            truevar = False
-            maze.main()
+        if key[pygame.K_RETURN]:
+            if player.rect.x >900 and player.rect.x <1100:
+                truevar = False
+                print("hi")
+                maze.main()
 
         pygame.display.flip()
 
@@ -85,7 +82,6 @@ def levelthree ():
 
             elif event.type == pygame.MOUSEBUTTONDOWN:
                 click_img = event.pos
-
 
 
 

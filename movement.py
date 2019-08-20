@@ -11,7 +11,7 @@ class Cat (pygame.sprite.Sprite):
         self.rect.y = 370 #change y position
         self.radius = int(self.rect.width / 2)
         self.isjump = 0
-        self.v = 5
+        self.v = 8
     def move(self, dx):
         # Move each axis separately. Note that this checks for collisions both times.
         if dx != 0:
