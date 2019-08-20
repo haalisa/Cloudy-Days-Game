@@ -6,12 +6,7 @@ from pygame.locals import *
 # from transitions import *
 # import random
 
-# start of the dialogue for Kit Kat and Kai
-    #Kit Kat is trying to cheer up Kai for school. Kit kat believes that it will be a good day, but Kai disagrees saying that it is just the usual mundane day.
-    #Kit Kat goes over to the cereal and says that it will make Kai a bowl of Oreo-O's (his favorite)
-
-
-# import cereal_game
+import cereal_game
 
 # import start_menu this is what is causing only lvl 1 to run
 
@@ -56,28 +51,17 @@ def leveltwo ():
         full_kitchen = pygame.transform.scale(full_kitchen, (width,height))
         screen.blit(full_kitchen, (0,0))
 
-        pygame.draw.rect(screen, () )
-
-        beforekitchentext = pygame.font.Font('fonts/Roboto-Thin.ttf', 100)
-        TextSurf, TextRect = text_objects("Kai", beforekitchentext)
-        TextRect.center = (200,400)
-        screen.blit(TextSurf,TextRect)
-
-        kaicon = pygame.image.load("C:/Users/GWC/Documents/GitHub/Cloudy-Days-Game/KAI/uh.png")
-        kaicon = pygame.transform.scale(kaicon, (width,height))
-        screen.blit(kaicon,(200,400))
-
-        cereal = pygame.image.load("pics/lvl-bgs/cereal.png")
-        cereal = pygame.transform.scale(cereal, (60,78))
-        test_rect2 = cereal.get_rect()
-        screen.blit(cereal, (520,126))
+        # cereal = pygame.image.load("pics/lvl-bgs/cereal.png")
+        # cereal = pygame.transform.scale(cereal, (width,height))
+        # test_rect2 = cereal.get_rect()
+        # screen.blit(cereal, (0,0))
 
         if click[0] == 1 and cerealRect.collidepoint(mouse):
             truevar = False
             cereal_game.cerealgame()
 
-        screen.blit(cereal,(520, 126))
-        #
+        # screen.blit(cerealRect,520, 126)
+
         # kitchen = pygame.image.load("pics/lvl-bgs/kitchen.png").convert()
         # kitchen = pygame.transform.scale(kitchen, (width,height))
         # screen.blit(kitchen, (0,0))
@@ -95,8 +79,8 @@ def leveltwo ():
         # screen.blit(bowl, (0,0))
         #
         # cereal = pygame.image.load("pics/lvl-bgs/cereal.png")
-        # cereal = pygame.transform.scale(cereal, (60,78))
-        # screen.blit(cereal, (520,126))
+        # cereal = pygame.transform.scale(cereal, (width,height))
+        # screen.blit(cereal, (0,0))
         #
         # door_out = pygame.image.load("pics/lvl-bgs/doorout.png")
         # door_out = pygame.transform.scale(door_out, (width,height))
@@ -105,10 +89,6 @@ def leveltwo ():
         # kitchen_door = pygame.image.load("pics/lvl-bgs/kitchen_door.png")
         # kitchen_door = pygame.transform.scale(kitchen_door, (width,height))
         # screen.blit(kitchen_door, (0,0))
-
-# needs to have dialogue for Kai and Kit Kat after the cereal game
-
-
 
         pygame.display.flip()
 
