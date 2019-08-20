@@ -11,7 +11,7 @@ class Cat (pygame.sprite.Sprite):
         self.rect.y = 260 #change y position
         self.radius = int(self.rect.width / 2)
         self.isjump = 0
-        self.v = 8
+
     def move(self, dx):
         # Move each axis separately. Note that this checks for collisions both times.
         if dx != 0:
@@ -24,41 +24,37 @@ class Cat (pygame.sprite.Sprite):
                 if dx < 0: # Moving left; Hit the right side of the wall
                     self.rect.left = wall.rect.right
 
-
     def jump(self):
+        if self.isjump==0:
+            self.v = 8
+
         self.isjump = 1
+
 
     def update(self):
         if self.isjump:
+
             if self.v > 0:
                 dy = -(.25*self.v*self.v)
             else:
                 dy = (.25*self.v*self.v)
 
             self.rect.y += dy
-            self.v -= .25
+            self.v -= 0.25
 
             for wall in walls:
                 if self.rect.colliderect(wall.rect):
-                    print("Bottom1: ")
-                    print(self.rect.bottom)
-                    print(wall.rect.top)
-
                     if dy> 0: # Moving down; Hit the top side of the wall
-                        self.rect.bottom = wall.rect.top
-                        self.isjump = 0
-                        self.v=8
-                    # if not self.rect.colliderect(wall.rect) and not self.isjump:
-                    #     self.isjump= 1
-                    #     self.v = -4
-                print("Bottom2: ")
-                print(self.rect.bottom)
+                        self.rect.bottom = wall.rect.top - 1
+                        self.v= 8
+                    if not self.rect.colliderect(wall.rect):
+                        self.isjump= 1
+                        self.v =0
+
             if self.rect.y >= 260:
                 self.rect.y = 260
                 self.isjump = 0
                 self.v=8
-                print("Bottom3: ")
-                print(self.rect.bottom)
 class Wall(object):
     def __init__(self, pos):
         walls.append(self)
