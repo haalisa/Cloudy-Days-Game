@@ -25,8 +25,7 @@ class Cat (pygame.sprite.Sprite):
                     self.rect.left = wall.rect.right
 
     def jump(self):
-        if self.isjump==0:
-            self.v = 8
+    
 
         self.isjump = 1
 
@@ -45,8 +44,8 @@ class Cat (pygame.sprite.Sprite):
             for wall in walls:
                 if self.rect.colliderect(wall.rect):
                     if dy> 0: # Moving down; Hit the top side of the wall
-                        self.rect.bottom = wall.rect.top - 1
-                        self.v= 8
+                        self.rect.bottom = wall.rect.top
+
                     if not self.rect.colliderect(wall.rect):
                         self.isjump= 1
                         self.v =0
