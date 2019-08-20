@@ -11,7 +11,7 @@ import random
 from movement import *
 
 # import start_menu this is what is causing only lvl 1 to run
-import level_two_aftergame
+#import level_two_aftergame
 
 #defining screen
 width, height = 1200,600
@@ -148,8 +148,8 @@ def cerealgame ():
             player.jump()
 
         if o.cereal_count >= 1:
-            # truevar = False
-            level_two_aftergame.leveltwoaftergame()
+             truevar = False
+            #level_two_aftergame.leveltwoaftergame()
 
         pygame.display.flip()
 

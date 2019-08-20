@@ -46,6 +46,8 @@ def leveltwo ():
     full_kitchen = pygame.image.load("pics/lvl-bgs/full_kitchen.png").convert()
     full_kitchen = pygame.transform.scale(full_kitchen, (width,height))
 
+    didplaycereal = False
+
     while truevar:
         click = pygame.mouse.get_pressed()
         mouse = pygame.mouse.get_pos()
@@ -60,9 +62,11 @@ def leveltwo ():
         # test_rect2 = cereal.get_rect()
         # screen.blit(cereal, (0,0))
 
-        if click[0] == 1 and cerealRect.collidepoint(mouse):
-            truevar = False
-            cereal_game.cerealgame()
+        if didplaycereal == False:
+            if click[0] == 1 and cerealRect.collidepoint(mouse):
+                didplaycereal = True
+                cereal_game.cerealgame()
+                continue
 
         screen.blit(player.image, player.rect)
         player.update()
