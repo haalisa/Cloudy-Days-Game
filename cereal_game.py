@@ -10,7 +10,7 @@ import random
 from movement2 import *
 
 # import start_menu this is what is causing only lvl 1 to run
-
+# import level_two
 
 #defining screen
 width, height = 1200,600
@@ -49,6 +49,13 @@ player = Cat()
 
 o = Oreo()
 
+oreos = pygame.sprite.Group()
+all_sprites = pygame.sprite.Group()
+
+# Create a custom event for adding a new enemy.
+ADDENEMY = pygame.USEREVENT + 1
+pygame.time.set_timer(ADDENEMY, 150)
+
 def text_objects(text, font):
     black = (0,0,0)
     textSurface = font.render(text, True, black)
@@ -57,6 +64,8 @@ def text_objects(text, font):
 def cerealgame ():
     pygame.init()
     # flags = FULLSCREEN | DOUBLEBUF
+    width, height = 1200,600
+    screen = pygame.display.set_mode((width, height))
 
     #define colors
     black = (0,0,0)
@@ -102,12 +111,9 @@ def cerealgame ():
         TextRect_cc.center = (250,50)
         screen.blit(TextSurf_cc,TextRect_cc)
 
-
-
         # draws the cat
         screen.blit(player.image, player.rect)
 
-        pygame.display.flip()
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -120,6 +126,17 @@ def cerealgame ():
                 elif event.key == K_KP_ENTER:
                     pygame.quit()
                     exit(0)
+            elif(event.type == ADDENEMY):
+                new_oreo = Oreo()
+                oreos.add(new_oreo)
+                all_sprites.add(new_oreo)
+        oreos.update()
+
+        # if o.cereal_count >= 1:
+        #     # truevar = False
+        #     level_two.leveltwo()
+
+        pygame.display.flip()
 
             # elif event.type == pygame.MOUSEBUTTONDOWN:
             #     click_img = event.pos
