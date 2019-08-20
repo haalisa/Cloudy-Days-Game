@@ -66,6 +66,7 @@ def levelthree ():
                 print("hi")
                 maze.main()
 
+        clock.tick(200)
         pygame.display.flip()
 
         for event in pygame.event.get():
