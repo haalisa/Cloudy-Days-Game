@@ -11,6 +11,7 @@ from movement2 import *
 
 # import start_menu this is what is causing only lvl 1 to run
 
+
 #defining screen
 width, height = 1200,600
 screen = pygame.display.set_mode((width, height))
@@ -25,6 +26,8 @@ class Oreo(pygame.sprite.Sprite):
         self.rect= self.image.get_rect(
             center = (random.randint(0,600), random.randint(5,10))
         )
+        self.cereal_count = 0
+        #radius
 
     def update(self):
         # fall until its y is more than 650
@@ -33,14 +36,14 @@ class Oreo(pygame.sprite.Sprite):
 
         # if it falls offscreen, reappear to top and fall again
         if self.rect.y >= 650:
-            self.rect.x = random.randint(0,1200)
+            self.rect.x = random.randint(10,1100)
             self.rect.y = random.randint(-150,-10)
 
         # if touching, add point and disappear
         if player.rect.colliderect(o.rect):
-            self.rect.x = random.randint(0,1200)
+            self.rect.x = random.randint(10,1100)
             self.rect.y = random.randint(-150,-10)
-            # cereal_count += 1
+            self.cereal_count += 1
 
 player = Cat()
 
@@ -73,10 +76,14 @@ def cerealgame ():
 
     # click = pygame.mouse.get_pressed()
     # mouse = pygame.mouse.get_pos()
-    cereal_count = 0
-
     while truevar:
         screen.fill(darkBlue)
+
+        #defining text for instructions
+        instructions = pygame.font.Font('fonts/Roboto-Light.ttf', 30)
+        TextSurf_i, TextRect_i = text_objects("Reach 15 oreos to win.", instructions)
+        TextRect_i.center = (600,300)
+        screen.blit(TextSurf_i,TextRect_i)
 
         # runs the update function
         o.update()
@@ -91,9 +98,11 @@ def cerealgame ():
         screen.blit(TextSurf_score,TextRect_score)
 
         cereal_count_text = pygame.font.Font('fonts/Roboto-Light.ttf', 50)
-        TextSurf_cc, TextRect_cc = text_objects(str(cereal_count), cereal_count_text)
+        TextSurf_cc, TextRect_cc = text_objects(str(o.cereal_count), cereal_count_text)
         TextRect_cc.center = (250,50)
         screen.blit(TextSurf_cc,TextRect_cc)
+
+
 
         # draws the cat
         screen.blit(player.image, player.rect)
