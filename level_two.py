@@ -2,18 +2,14 @@
 
 import pygame
 from pygame.locals import *
-# import transitions
-# from transitions import *
-# import random
 
 # start of the dialogue for Kit Kat and Kai
     #Kit Kat is trying to cheer up Kai for school. Kit kat believes that it will be a good day, but Kai disagrees saying that it is just the usual mundane day.
     #Kit Kat goes over to the cereal and says that it will make Kai a bowl of Oreo-O's (his favorite)
 
-
-# import cereal_game
-
-# import start_menu this is what is causing only lvl 1 to run
+import cereal_game
+import level_two_outside
+from movement import *
 
 def text_objects(text, font):
     black = (0,0,0)
@@ -44,6 +40,24 @@ def leveltwo ():
 
     pygame.init()
 
+    player = Cat()
+
+    full_kitchen = pygame.image.load("pics/lvl-bgs/full_kitchen.png").convert()
+    full_kitchen = pygame.transform.scale(full_kitchen, (width,height))
+
+    kaicon = pygame.image.load("KAI/uh.png")
+    kaicon = pygame.transform.scale(kaicon, (width,height))
+
+    beforekitchentext = pygame.font.Font('fonts/arcade.ttf', 50)
+    TextSurf, TextRect = text_objects("Kai", beforekitchentext)
+    TextRect.center = (200,520)
+
+    didplaycereal = False
+
+    player.rect.x = 1000
+
+    player.image = pygame.image.load("KIT_KAT/kitkat_left2.png")
+
     while truevar:
         click = pygame.mouse.get_pressed()
         mouse = pygame.mouse.get_pos()
@@ -51,33 +65,51 @@ def leveltwo ():
         cerealRectPos = (520,126,60,78)
         cerealRect = pygame.draw.rect(screen, white, cerealRectPos)
 
-        full_kitchen = pygame.image.load("pics/lvl-bgs/full_kitchen.png").convert()
-        full_kitchen = pygame.transform.scale(full_kitchen, (width,height))
         screen.blit(full_kitchen, (0,0))
 
-        dialoguebarPos = (90,380,1000,300)
-        dialoguebar = pygame.draw.rect(screen, white, dialoguebarPos)
+        key = pygame.key.get_pressed()
 
+        #DIALOGUE GOES HERE
+        if key[pygame.K_RETURN]:
+            dialoguebarPos = (90,380,1000,300)
+            dialoguebar = pygame.draw.rect(screen, white, dialoguebarPos)
 
-        beforekitchentext = pygame.font.Font('fonts/arcade.ttf', 50)
-        TextSurf, TextRect = text_objects("Kai", beforekitchentext)
-        TextRect.center = (200,520)
-        screen.blit(TextSurf,TextRect)
-
-        kaicon = pygame.image.load("C:/Users/GWC/Documents/GitHub/Cloudy-Days-Game/KAI/uh.png")
-        kaicon = pygame.transform.scale(kaicon, (width,height))
-        screen.blit(kaicon,(-400,100))
+            screen.blit(TextSurf,TextRect)
+            screen.blit(kaicon,(-400,100))
 
         cereal = pygame.image.load("pics/lvl-bgs/cereal.png")
         cereal = pygame.transform.scale(cereal, (60,78))
         test_rect2 = cereal.get_rect()
         screen.blit(cereal, (520,126))
 
+        if didplaycereal == False:
+            if click[0] == 1 and cerealRect.collidepoint(mouse):
+                didplaycereal = True
+                cereal_game.cerealgame()
+                continue
+
         if click[0] == 1 and cerealRect.collidepoint(mouse):
             truevar = False
             cereal_game.cerealgame()
 
         screen.blit(cereal,(520, 126))
+
+        screen.blit(player.image, player.rect)
+        player.update()
+
+        key = pygame.key.get_pressed()
+        if key[pygame.K_LEFT]:
+            player.move(-2)
+            player.image = pygame.image.load("KIT_KAT/kitkat_left2.png")
+        if key[pygame.K_RIGHT]:
+            player.move(2)
+            player.image = pygame.image.load("KIT_KAT/kitkat_right2.png")
+        if key[pygame.K_UP]:
+            player.jump()
+
+        if didplaycereal == True:
+            if player.rect.x < -100:
+                level_two_outside.leveltwooutside()
         #
         # kitchen = pygame.image.load("pics/lvl-bgs/kitchen.png").convert()
         # kitchen = pygame.transform.scale(kitchen, (width,height))
