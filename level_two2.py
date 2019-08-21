@@ -1,5 +1,7 @@
 #kitchen
 
+# when linked with bedroom, the wall for bed still carries over
+
 import pygame
 from pygame.locals import *
 # import transitions
@@ -48,6 +50,8 @@ def leveltwo ():
     full_kitchen = pygame.transform.scale(full_kitchen, (width,height))
 
     didplaycereal = False
+
+    y = player.rect.y
 
     while truevar:
         click = pygame.mouse.get_pressed()

@@ -1,8 +1,6 @@
 # Things to do here:
-# Make scene function
 # Have Kai lay on the bed
-# Kit Kat is movable by wasd or arrow keys and can jump
-# Collision detection works
+# Collision detection on edges
 # Interacting with the door will exit to the kitchen
 # Make furniture interactive (i.e. clicking on the cat door will send Kit Kat to closet)
 import pygame
@@ -10,6 +8,7 @@ from pygame.locals import *
 import transitions
 from transitions import *
 import random
+import level_two2
 
 # import start_menu
 from movement import Cat
@@ -42,7 +41,7 @@ def levelone ():
     transitions.init ( screen, width, height )
 
     truevar = True
-    DoorOpen = false
+    DoorOpen = False
     clock = pygame.time.Clock()
     jumps = 0
 
@@ -50,9 +49,19 @@ def levelone ():
     bedroom = pygame.image.load("pics/lvl-bgs/full_bedroom2.png").convert()
     bed = Wall((50, 400))
 
+    bedroom_sleeping = pygame.image.load("pics/lvl-bgs/full_bedroom_sleeping.png").convert()
+    bedroom_sleeping = pygame.transform.scale(bedroom_sleeping, (width,height))
+
     while truevar:
         rectangle = pygame.draw.rect(screen, (0,0,0), bed)
-        screen.blit(bedroom, (0,0))
+
+        # if kai is sleeping
+        if DoorOpen == False:
+            screen.blit(bedroom_sleeping, (0,0))
+
+        # if kai is woken up
+        if DoorOpen == True:
+            screen.blit(bedroom, (0,0))
 
         player.update()
 
@@ -64,9 +73,16 @@ def levelone ():
         if key[pygame.K_UP]:
             player.jump()
 
+        # cat leaves bedroom to go to kitchen
+        # TO DO: make the bed wall not work in the kitchen
+        if key[pygame.K_RETURN]:
+            if player.rect.x >900 and player.rect.x <1100:
+                truevar = False
+                level_two2.leveltwo() #change to level_two later when those files have been combined
+
         print (player.jumpdone)
-        if player.jumpdone== 10
-            DoorOpen = true
+        if player.jumpdone == 10:
+            DoorOpen = True
         # if runSecondTime == True:
         #     if click[0] == 1 and goBackButton.collidepoint(mouse):
         #
