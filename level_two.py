@@ -52,6 +52,10 @@ def leveltwo ():
     TextSurf, TextRect = text_objects("Kai", beforekitchentext)
     TextRect.center = (200,520)
 
+    kitkat_thought_text = pygame.font.Font('fonts/cambria.ttf', 20)
+    TextSurf1, TextRect1 = text_objects("Oops, we need to do something first!", kitkat_thought_text)
+
+
     didplaycereal = False
 
     player.rect.x = 1000
@@ -109,6 +113,15 @@ def leveltwo ():
         if didplaycereal == True:
             if player.rect.x < -100:
                 level_two_outside.leveltwooutside()
+
+        # if didplaycereal == False:
+        #     if player.rect.x < -100:
+        #         kitkat_thoughtpos = (player.rect.x + 75, player.rect.y - 100, 100,75)
+        #         kitkat_thought = pygame.draw.ellipse(screen, white, kitkat_thoughtpos)
+        #
+        #         TextRect1.center = (player.rect.x - 200, player.rect.y - 50)
+        #         screen.blit(TextSurf1,TextRect1)
+
         #
         # kitchen = pygame.image.load("pics/lvl-bgs/kitchen.png").convert()
         # kitchen = pygame.transform.scale(kitchen, (width,height))
