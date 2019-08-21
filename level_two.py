@@ -40,7 +40,6 @@ def leveltwo ():
     truevar = True
     clock = pygame.time.Clock()
 
-
     clock.tick(180)
 
     pygame.init()
@@ -56,16 +55,18 @@ def leveltwo ():
         full_kitchen = pygame.transform.scale(full_kitchen, (width,height))
         screen.blit(full_kitchen, (0,0))
 
-        pygame.draw.rect(screen, () )
+        dialoguebarPos = (90,380,1000,300)
+        dialoguebar = pygame.draw.rect(screen, white, dialoguebarPos)
 
-        beforekitchentext = pygame.font.Font('fonts/Roboto-Thin.ttf', 100)
+
+        beforekitchentext = pygame.font.Font('fonts/arcade.ttf', 50)
         TextSurf, TextRect = text_objects("Kai", beforekitchentext)
-        TextRect.center = (200,400)
+        TextRect.center = (200,520)
         screen.blit(TextSurf,TextRect)
 
         kaicon = pygame.image.load("C:/Users/GWC/Documents/GitHub/Cloudy-Days-Game/KAI/uh.png")
         kaicon = pygame.transform.scale(kaicon, (width,height))
-        screen.blit(kaicon,(200,400))
+        screen.blit(kaicon,(-400,100))
 
         cereal = pygame.image.load("pics/lvl-bgs/cereal.png")
         cereal = pygame.transform.scale(cereal, (60,78))

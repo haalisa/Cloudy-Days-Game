@@ -7,11 +7,12 @@ class Cat (pygame.sprite.Sprite):
         self.image = pygame.image.load("pics/cat.gif")
         self.image.set_colorkey((255, 255, 255), RLEACCEL)
         self.rect = self.image.get_rect()
-        self.rect.x = 20
+        self.rect.x = 400
         self.rect.y = 370 #change y position
         self.radius = int(self.rect.width / 2)
         self.isjump = 0
         self.v = 8
+        self.jumpdone= 0
     def move(self, dx):
         # Move each axis separately. Note that this checks for collisions both times.
         if dx != 0:
@@ -44,6 +45,7 @@ class Cat (pygame.sprite.Sprite):
                         self.rect.bottom = wall.rect.top
                         self.isjump = 0
                         self.v=8
+                        self.jumpdone += 1
 
             if self.rect.y >= 370:
                 self.rect.y = 370
