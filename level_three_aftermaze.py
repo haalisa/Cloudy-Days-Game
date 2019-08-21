@@ -9,6 +9,7 @@ import maze
 from movement import Cat
 from movement import Wall
 # import level_two
+import end_screen
 
 def text_objects(text, font):
     black = (0,0,0)
@@ -41,10 +42,10 @@ def levelthreeaftermaze ():
     school_door = pygame.image.load("pics/lvl-bgs/kitchen_door.png")
     block_rect = pygame.Rect(950, 200, 200, 335)
     player= Cat()
+    player.rect.x = 975
     while truevar:
         mouse = pygame.mouse.get_pos()
         click = pygame.mouse.get_pressed()
-
 
         screen.blit(lockers, (0,0))
         # block = pygame.draw.rect(screen, (0,0,0), block_rect)
@@ -60,12 +61,15 @@ def levelthreeaftermaze ():
         if key[pygame.K_UP]:
             player.jump()
 
+        if player.rect.x < -150:
+            end_screen.endscreen()
+
         # if key[pygame.K_RETURN]:
         #     if player.rect.x >900 and player.rect.x <1100:
         #         truevar = False
-        #         print("hi")
         #         maze.main()
 
+        clock.tick(200)
         pygame.display.flip()
 
         for event in pygame.event.get():
@@ -82,3 +86,6 @@ def levelthreeaftermaze ():
 
             elif event.type == pygame.MOUSEBUTTONDOWN:
                 click_img = event.pos
+
+
+#levelthreeaftermaze()
