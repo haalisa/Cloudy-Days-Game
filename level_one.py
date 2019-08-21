@@ -8,7 +8,7 @@ from pygame.locals import *
 import transitions
 from transitions import *
 import random
-import level_two2
+# import level_two2
 
 # import start_menu
 from movement import Cat
@@ -42,8 +42,10 @@ def levelone ():
 
     truevar = True
     DoorOpen = False
+    KaiUp= False
     clock = pygame.time.Clock()
     jumps = 0
+    enter = 0
 
     player = Cat()
     bedroom = pygame.image.load("pics/lvl-bgs/full_bedroom2.png").convert()
@@ -52,16 +54,27 @@ def levelone ():
     bedroom_sleeping = pygame.image.load("pics/lvl-bgs/full_bedroom_sleeping.png").convert()
     bedroom_sleeping = pygame.transform.scale(bedroom_sleeping, (width,height))
 
+    introtext= pygame.image.load("pics/bird1.png").convert()
+    instruct= pygame.image.load("pics/bird2.png").convert()
+TextSurf4, TextRect4 = text_objects("Press enter to continue", speechText)
+TextRect4.center = (900,80)
+screen.blit(TextSurf4,TextRect4)
+TextSurf1, TextRect1 = text_objects("Hit the up arrow to jump on Kai's bed", speechText)
+TextRect4.center = (900,80)
     while truevar:
         rectangle = pygame.draw.rect(screen, (0,0,0), bed)
 
         # if kai is sleeping
         if DoorOpen == False:
             screen.blit(bedroom_sleeping, (0,0))
-
         # if kai is woken up
         if DoorOpen == True:
             screen.blit(bedroom, (0,0))
+        if enter == 0:
+            screen.blit(introtext,(500,100))
+        elif enter == 1:
+            screen.blit(instruct, (500,100))
+        elif enter == 2
 
         player.update()
 
@@ -70,8 +83,9 @@ def levelone ():
             player.move(-2)
         if key[pygame.K_RIGHT]:
             player.move(2)
-        if key[pygame.K_UP]:
-            player.jump()
+        if enter == 1:
+            if key[pygame.K_UP]:
+                player.jump()
 
         # cat leaves bedroom to go to kitchen
         # TO DO: make the bed wall not work in the kitchen
@@ -80,27 +94,19 @@ def levelone ():
                 truevar = False
                 level_two2.leveltwo() #change to level_two later when those files have been combined
 
-        print (player.jumpdone)
-        if player.jumpdone == 10:
-            DoorOpen = True
-        # if runSecondTime == True:
-        #     if click[0] == 1 and goBackButton.collidepoint(mouse):
-        #
-        #         start_menu.game_intro()
-        #         truevar = False
+        if player.rect.x > 50 and player.rect.x<300 and player.v == 0.25:
+            jumps +=1
 
-        #defining texts
-        #button text
-        # buttonText = pygame.font.Font('fonts/Roboto-Thin.ttf', 25)
-        # TextSurf3, TextRect3 = text_objects("go back", buttonText)
-        # TextRect3.center = (1050,125)
-        #
-        #speech bubble text
+        if jumps >= 10:
+            DoorOpen = True
+
+        if jumps >= 5:
+            KaiUp= True
+
         speechText = pygame.font.Font('fonts/livvic/livvic-medium.ttf', 20)
 
-        TextSurf4, TextRect4 = text_objects("Jump on Kai to wake them up!", speechText)
-        TextRect4.center = (900,80)
-        screen.blit(TextSurf4,TextRect4)
+
+        screen.blit(TextSurf1,TextRect1)
 
         screen.blit(player.image, player.rect)
 
@@ -116,6 +122,8 @@ def levelone ():
                if event.key == K_ESCAPE:
                    pygame.quit()
                    exit(0)
-
+            if event.type == pygame.KEYDOWN:
+                if event.key==K_RETURN:
+                    enter += 1
 #take this out later
 levelone()
