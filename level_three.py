@@ -63,7 +63,6 @@ def levelthree ():
         if key[pygame.K_RETURN]:
             if player.rect.x >900 and player.rect.x <1100:
                 truevar = False
-                print("hi")
                 maze.main()
 
         clock.tick(200)

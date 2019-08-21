@@ -1,5 +1,7 @@
 #kitchen
 
+# when linked with bedroom, the wall for bed still carries over
+
 import pygame
 from pygame.locals import *
 # import transitions
