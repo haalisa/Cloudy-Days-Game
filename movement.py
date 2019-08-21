@@ -4,11 +4,11 @@ walls= []
 class Cat (pygame.sprite.Sprite):
     def __init__(self):
         super(Cat, self).__init__()
-        self.image = pygame.image.load("pics/cat.gif")
+        self.image = pygame.image.load("KIT_KAT/kitkat_right2.png")
         self.image.set_colorkey((255, 255, 255), RLEACCEL)
         self.rect = self.image.get_rect()
         self.rect.x = 400
-        self.rect.y = 370 #change y position
+        self.rect.y = 355 #change y position
         self.radius = int(self.rect.width / 2)
         self.isjump = 0
         self.v = 8

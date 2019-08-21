@@ -8,6 +8,8 @@ import random
 
 from movement import *
 
+import level_three
+
 # import start_menu
 
 def text_objects(text, font):
@@ -18,6 +20,7 @@ def text_objects(text, font):
 def leveltwooutside ():
 
     # flags = FULLSCREEN | DOUBLEBUF
+    pygame.init() #take out later
 
     #define colors
     black = (0,0,0)
@@ -36,29 +39,38 @@ def leveltwooutside ():
     truevar = True
     clock = pygame.time.Clock()
     click = pygame.mouse.get_pressed()
-    mouse = pygame.mouse.get_pos()
-
-    clock.tick(180)
 
     player = Cat()
 
-    bus_stop = pygame.image.load("pics/lvl-bgs/full_busstop.png")
+    bus_stop = pygame.image.load("pics/lvl-bgs/full_busstop.png").convert()
     bus_stop = pygame.transform.scale(bus_stop, (width,height))
+
+    player.rect.x = 1100
 
     while truevar:
         #draw bg
         screen.blit(bus_stop, (0,0))
 
         screen.blit(player.image, player.rect)
+
         player.update()
 
         key = pygame.key.get_pressed()
         if key[pygame.K_LEFT]:
             player.move(-2)
+            player.image = pygame.image.load("KIT_KAT/kitkat_left2.png")
         if key[pygame.K_RIGHT]:
             player.move(2)
+            player.image = pygame.image.load("KIT_KAT/kitkat_right2.png")
         if key[pygame.K_UP]:
             player.jump()
+
+        mouse = pygame.mouse.get_pos()
+        print(mouse)
+        if key[pygame.K_RETURN]:
+            if player.rect.x > 130 and player.rect.x < 250:
+                truevar = False
+                level_three.levelthree()
 
         pygame.display.flip()
 
