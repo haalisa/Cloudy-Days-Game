@@ -44,6 +44,9 @@ def leveltwo ():
 
     pygame.init()
 
+    full_kitchen = pygame.image.load("pics/lvl-bgs/full_kitchen.png").convert()
+    full_kitchen = pygame.transform.scale(full_kitchen, (width,height))
+
     while truevar:
         click = pygame.mouse.get_pressed()
         mouse = pygame.mouse.get_pos()
@@ -51,20 +54,17 @@ def leveltwo ():
         cerealRectPos = (520,126,60,78)
         cerealRect = pygame.draw.rect(screen, white, cerealRectPos)
 
-        full_kitchen = pygame.image.load("pics/lvl-bgs/full_kitchen.png").convert()
-        full_kitchen = pygame.transform.scale(full_kitchen, (width,height))
         screen.blit(full_kitchen, (0,0))
 
         dialoguebarPos = (90,380,1000,300)
         dialoguebar = pygame.draw.rect(screen, white, dialoguebarPos)
-
 
         beforekitchentext = pygame.font.Font('fonts/arcade.ttf', 50)
         TextSurf, TextRect = text_objects("Kai", beforekitchentext)
         TextRect.center = (200,520)
         screen.blit(TextSurf,TextRect)
 
-        kaicon = pygame.image.load("C:/Users/GWC/Documents/GitHub/Cloudy-Days-Game/KAI/uh.png")
+        kaicon = pygame.image.load("KAI/uh.png")
         kaicon = pygame.transform.scale(kaicon, (width,height))
         screen.blit(kaicon,(-400,100))
 
@@ -78,10 +78,6 @@ def leveltwo ():
             cereal_game.cerealgame()
 
         screen.blit(cereal,(520, 126))
-        #
-        # kitchen = pygame.image.load("pics/lvl-bgs/kitchen.png").convert()
-        # kitchen = pygame.transform.scale(kitchen, (width,height))
-        # screen.blit(kitchen, (0,0))
         #
         # chair1 = pygame.image.load("pics/lvl-bgs/chair1.png")
         # chair1 = pygame.transform.scale(chair1, (width,height))

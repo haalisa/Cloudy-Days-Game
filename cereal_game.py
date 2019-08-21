@@ -147,7 +147,7 @@ def cerealgame ():
         if key[pygame.K_UP]:
             player.jump()
 
-        if o.cereal_count >= 1:
+        if o.cereal_count >= 15:
              truevar = False
             #level_two_aftergame.leveltwoaftergame()
 

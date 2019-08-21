@@ -41,10 +41,11 @@ def levelthree ():
     school_door = pygame.image.load("pics/lvl-bgs/kitchen_door.png")
     block_rect = pygame.Rect(950, 200, 200, 335)
     player= Cat()
+
     while truevar:
+
         mouse = pygame.mouse.get_pos()
         click = pygame.mouse.get_pressed()
-
 
         screen.blit(lockers, (0,0))
         # block = pygame.draw.rect(screen, (0,0,0), block_rect)
@@ -82,7 +83,5 @@ def levelthree ():
 
             elif event.type == pygame.MOUSEBUTTONDOWN:
                 click_img = event.pos
-
-
 
 levelthree()
