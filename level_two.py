@@ -41,7 +41,7 @@ def leveltwo ():
     pygame.init()
 
     player = Cat()
-
+    table = Wall((150,470))
     full_kitchen = pygame.image.load("pics/lvl-bgs/full_kitchen.png").convert()
     full_kitchen = pygame.transform.scale(full_kitchen, (width,height))
 
@@ -61,12 +61,11 @@ def leveltwo ():
     while truevar:
         click = pygame.mouse.get_pressed()
         mouse = pygame.mouse.get_pos()
-
         cerealRectPos = (520,126,60,78)
         cerealRect = pygame.draw.rect(screen, white, cerealRectPos)
 
         screen.blit(full_kitchen, (0,0))
-
+        rectangle = pygame.draw.rect(screen, (0,0,0), table)
         key = pygame.key.get_pressed()
 
         #DIALOGUE GOES HERE
@@ -160,4 +159,4 @@ def leveltwo ():
             elif event.type == pygame.MOUSEBUTTONDOWN:
                 click_img = event.pos
 
-leveltwo()
+# leveltwo()
