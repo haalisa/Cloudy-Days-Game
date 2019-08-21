@@ -159,5 +159,3 @@ def leveltwo ():
 
             elif event.type == pygame.MOUSEBUTTONDOWN:
                 click_img = event.pos
-
-leveltwo()

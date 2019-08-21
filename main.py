@@ -2,8 +2,7 @@ import pygame
 
 # import functions
 import start_menu
-import level_one
-import maze
+
 #main function running
 def main ():
     pygame.init()
