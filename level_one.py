@@ -180,12 +180,8 @@ def levelone ():
 
         clock.tick(150)
 
-        screen.blit(text_box_big,(0,0))
-
-        if jumps < 20:
+        if KaiUp == False:
             screen.blit(text_box,(0,0))
-        if jumps > 20 and enter >= 4:
-            screen.blit(text_box_big,(0,0))
 
         if enter == 1 and jumps<10:
             next = 1
@@ -197,22 +193,27 @@ def levelone ():
             next = 4
         if jumps >= 10 and jumps< 15:
             next = 5
-        if jumps >= 17 < 20:
+        if jumps == 17:
             next = 6
             DoorOpen = True
-            KaiUp= True
-            if enter >= 2:
-                enter = 3
-        if jumps > 20 and enter == 3:
-            next = 7
-        if jumps > 20 and enter == 4:
+            enter = 3
+        if jumps > 18:
+            next = 7 # press enter to continue
+        if jumps > 19 and enter == 4:
+            KaiUp = True
             next = 8
-        if jumps > 20 and enter == 5:
-            next = 9
-        if jumps > 20 and enter == 6:
-            next = 10
-        if jumps > 20 and enter == 7:
-            next = 11
+        if KaiUp == True:
+            if enter == 5:
+                next = 9
+            if enter == 6:
+                next = 10
+            if enter == 7:
+                next = 11
+
+        print("enters:")
+        print(enter)
+        print("jumps:")
+        print(jumps)
 
         if next == 0:
             screen.blit(TextSurf_n,TextRect_n)
@@ -232,33 +233,19 @@ def levelone ():
             screen.blit(kaicon, (25,15))
         if next == 7:
             screen.blit(TextSurf_n7,TextRect_n7)
-        if next == 8:
-            screen.blit(TextSurf_n8,TextRect_n8)
-        if next == 9:
-            screen.blit(TextSurf_n9,TextRect_n9)
-        if next == 10:
-            screen.blit(TextSurf_n10,TextRect_n10)
-        if next == 11:
-            screen.blit(TextSurf_n11,TextRect_n11)
 
-
-        # if KaiUp:
-        #     if enter == 2:
-        #         jumps = 15
-        #         screen.blit(readyy, (0,0))
-        #         player.rect.x= -200
-        #     elif enter == 3:
-        #         screen.blit(noenergy, (0,0))
-        #     elif enter == 4:
-        #         screen.blit(pawsitive, (0,0))
-        #     elif enter == 5:
-        #         player.rect.x= 400
-        #         enter =6
-        #     elif enter == 6:
-        #         screen.blit(TextSurf3,TextRect3)
-        #     elif enter >= 7:
-        #         screen.blit(TextSurf5,TextRect5)
-
+        if KaiUp == True:
+            #full screen text box
+            screen.blit(text_box_big,(0,0))
+            if next == 8:
+                screen.blit(text_box_big,(0,0))
+                screen.blit(TextSurf_n8,TextRect_n8)
+            if next == 9:
+                screen.blit(TextSurf_n9,TextRect_n9)
+            if next == 10:
+                screen.blit(TextSurf_n10,TextRect_n10)
+            if next == 11:
+                screen.blit(TextSurf_n11,TextRect_n11)
 
         pygame.display.flip()
 
