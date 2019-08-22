@@ -58,7 +58,28 @@ class Cat (pygame.sprite.Sprite):
                     self.v =0
 
 
-class Wall(object):
-    def __init__(self, pos):
+class Wall(pygame.sprite.Sprite):
+    def __init__(self,pos):
         walls.append(self)
-        self.rect = pygame.Rect(pos[0], pos[1], 250, 100)
+        # self.surf = pygame.Surface((250,100))
+        # self.rect = self.surf.get_rect(center(pos[0], pos[1]))
+        self.rect = pygame.Rect(pos[0],pos[1], 250, 100)
+
+    def delet(self):
+        walls.remove(self)
+
+class Kai (pygame.sprite.Sprite):
+    def __init__(self):
+        super(Kai, self).__init__()
+        self.image = pygame.image.load("KAi/kai(w).png")
+        self.image.set_colorkey((255, 255, 255), RLEACCEL)
+        self.rect = self.image.get_rect()
+        self.rect.x = 400
+        self.rect.y = 355 #change y position
+        self.radius = int(self.rect.width / 2)
+        self.isjump = 0
+        self.v = 8
+    def move(self, pos):
+        while self.rect.x !=pos[0] and self.rect.y!=pos[1]:
+            if self.rect.x > pos[0]
+                self.rect.x -=

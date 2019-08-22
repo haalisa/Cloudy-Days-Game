@@ -69,7 +69,7 @@ def levelone ():
     dialogue = pygame.font.Font('fonts/livvic/livvic-medium.ttf', 20)
 
     TextSurf_n, TextRect_n = text_objects("Press enter to continue.", dialogue)
-    TextRect_n.center = (900,560)
+    TextRect_n.center = (900,540)
 
     TextSurf_n1, TextRect_n1 = text_objects2("Hi, I'm Kit Kat. That's Kai, my best friend.", dialogue)
     TextRect_n1.center = (375,80)
@@ -160,8 +160,10 @@ def levelone ():
         # TO DO: make the bed wall not work in the kitchen
         if key[pygame.K_RETURN] and next==11:
             if player.rect.x >900 and player.rect.x <1100:
+                bed.delet()
                 truevar = False
                 level_two.leveltwo() #change to level_two later when those files have been combined
+
 
         if player.rect.x > 50 and player.rect.x<300 and player.v == 0.25:
             jumps +=1
@@ -187,7 +189,7 @@ def levelone ():
             DoorOpen = True
             enter = 1
 
-        if enter==2:
+        if enter==2 and jumps >=13:
             KaiUp = True
             next = 6 # press enter to continue
         if KaiUp == True:
@@ -264,4 +266,4 @@ def levelone ():
                 if event.key==K_RETURN:
                     enter += 1
 #take this out later
-levelone()
+# levelone()
