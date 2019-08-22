@@ -39,6 +39,7 @@ def leveltwo ():
 
     truevar = True
     clock = pygame.time.Clock()
+    enter= 0
 
     clock.tick(180)
 
@@ -61,21 +62,37 @@ def leveltwo ():
     cereal = pygame.transform.scale(cereal, (60,78))
     test_rect2 = cereal.get_rect()
 
-    beforekitchentext = pygame.font.Font('fonts/arcade.ttf', 50)
-    TextSurf, TextRect = text_objects("Kai", beforekitchentext)
-    TextRect.center = (100,80)
+    # beforekitchentext = pygame.font.Font('fonts/arcade.ttf', 50)
+    # TextSurf, TextRect = text_objects("Kai", beforekitchentext)
+    # TextRect.center = (100,80)
+    dialogue = pygame.font.Font('fonts/livvic/livvic-medium.ttf', 20)
+    TextSurf, TextRect = text_objects2("Don't forget breakfast! It's the most important meal of the day.", dialogue)
+    TextRect.center = (500,80)
 
-    kitkat_thought_text = pygame.font.Font('fonts/cambria.ttf', 20)
-    TextSurf1, TextRect1 = text_objects("Oops, we need to do something first!", kitkat_thought_text)
+    TextSurf1, TextRect1 = text_objects2("I have no appetite", dialogue)
+    TextRect1.center = (500,80)
+
+    TextSurf2, TextRect2 = text_objects2("You have to eat! I'll get the cereal", dialogue)
+    TextRect2.center = (500,80)
+    TextSurf3, TextRect3 = text_objects2("Thanks Kit Kat, I appreciate you caring about me :)", dialogue)
+    TextRect3.center = (500,80)
+    TextSurf4, TextRect4 = text_objects2("I want you to care about yourself, and I know it's hard. But you can get through it.", dialogue)
+    TextRect4.center = (500,80)
+    TextSurf5, TextRect5 = text_objects2("Yeah...I finished the cereal, let's go!", dialogue)
+    TextRect5.center = (500,80)
+
+    TextSurf_n, TextRect_n = text_objects("Press enter to continue!", dialogue)
+    TextRect_n.center = (900,540)
+    TextSurf_n1, TextRect_n1 = text_objects("Jump to reach the box!", dialogue)
+    TextRect_n1.center = (900,540)
 
     text_box = pygame.image.load("pics/teal_rect.png")
     text_box.set_alpha(200)
     text_box = pygame.transform.scale(text_box, (width,150))
 
-    dialogue = pygame.font.Font('fonts/livvic/livvic-medium.ttf', 20)
 
-    TextSurf_n, TextRect_n = text_objects2("Press enter to continue.", dialogue)
-    TextRect_n.center = (275,80)
+
+
 
     didplaycereal = False
     next = 0
@@ -91,26 +108,54 @@ def leveltwo ():
         cerealRect = pygame.draw.rect(screen, white, cerealRectPos)
 
         rectangle = pygame.draw.rect(screen, (0,0,0), table)
+
         screen.blit(full_kitchen, (0,0))
-        key = pygame.key.get_pressed()
-
-        screen.blit(TextSurf,TextRect) #kai
-
-        screen.blit(kaicon,(-400,100))
-
-        #DIALOGUE GOES HERE
-        if key[pygame.K_RETURN]:
-            dialoguebarPos = (90,380,1000,300)
-            dialoguebar = pygame.draw.rect(screen, white, dialoguebarPos)
-
         screen.blit(cereal, (520,126))
         screen.blit(text_box, (0,0))
-        screen.blit(TextSurf,TextRect)
+
+        key = pygame.key.get_pressed()
+
+        if enter == 0:
+            next=0
+        if enter == 1:
+            next=1
+        if enter == 2:
+            next=2
+        if enter == 3:
+            next=3
+        if enter == 4:
+            next=4
+        if enter == 5:
+            next=5
+
+        if next==0:
+            screen.blit(TextSurf,TextRect) #dont forget breakfast
+            screen.blit(TextSurf_n,TextRect_n) #enter to continue
+        if next==1:
+            screen.blit(TextSurf1,TextRect1) #appetite
+            screen.blit(kaicon,(80,10))
+            screen.blit(TextSurf_n,TextRect_n) #enter to continue
+        if next==2:
+            screen.blit(TextSurf2,TextRect2) #get cereal
+            screen.blit(TextSurf_n1,TextRect_n1) #jump
+        if next ==3:
+            screen.blit(TextSurf3,TextRect3) #thanks kit kat
+            screen.blit(kaicon,(80,10))
+            screen.blit(TextSurf_n,TextRect_n) #enter tp continue
+        if next ==4:
+            screen.blit(TextSurf4,TextRect4) #I want you to care about yourself!
+            screen.blit(TextSurf_n,TextRect_n) #enter to continure
+        if next ==5:
+            screen.blit(TextSurf5,TextRect5) #let's go
+            screen.blit(kaicon,(80,10))
+            screen.blit(TextSurf_n,TextRect_n) #enter to continure
+
 
         if didplaycereal == False:
-            if click[0] == 1 and cerealRect.collidepoint(mouse):
+            if player.rect.y < 100 and player.rect.x> 420 and player.rect.x<540 :
                 didplaycereal = True
                 cereal_game.cerealgame()
+                enter=3
                 continue
 
         screen.blit(player.image, player.rect)
@@ -150,5 +195,9 @@ def leveltwo ():
                 if event.key == K_ESCAPE:
                     pygame.quit()
                     exit(0)
+            if event.type == pygame.KEYDOWN:
+                if event.key==K_RETURN:
+                    enter += 1
+
 
 leveltwo()
