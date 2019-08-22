@@ -16,11 +16,6 @@ def text_objects(text, font):
     textSurface = font.render(text, True, black)
     return textSurface, textSurface.get_rect()
 
-def text_objects2(text, font):
-    white = (255,255,255)
-    textSurface = font.render(text, True, white)
-    return textSurface, textSurface.get_rect()
-
 def leveltwo ():
 
     # flags = FULLSCREEN | DOUBLEBUF
@@ -50,35 +45,25 @@ def leveltwo ():
 
 
     player = Cat()
-    table = Wall((400,400))
+    table = Wall((150,470))
     full_kitchen = pygame.image.load("pics/lvl-bgs/full_kitchen.png").convert()
     full_kitchen = pygame.transform.scale(full_kitchen, (width,height))
 
-    kaicon = pygame.image.load("KAI/uh2.png")
-    kaicon = pygame.transform.scale(kaicon, (100,130))
-
-    cereal = pygame.image.load("pics/lvl-bgs/cereal.png")
-    cereal = pygame.transform.scale(cereal, (60,78))
-    test_rect2 = cereal.get_rect()
+    kaicon = pygame.image.load("KAI/uh.png")
+    kaicon = pygame.transform.scale(kaicon, (width,height))
 
     beforekitchentext = pygame.font.Font('fonts/arcade.ttf', 50)
     TextSurf, TextRect = text_objects("Kai", beforekitchentext)
-    TextRect.center = (100,80)
+    TextRect.center = (200,520)
 
     kitkat_thought_text = pygame.font.Font('fonts/cambria.ttf', 20)
     TextSurf1, TextRect1 = text_objects("Oops, we need to do something first!", kitkat_thought_text)
 
-    text_box = pygame.image.load("pics/teal_rect.png")
-    text_box.set_alpha(200)
-    text_box = pygame.transform.scale(text_box, (width,150))
-
-    dialogue = pygame.font.Font('fonts/livvic/livvic-medium.ttf', 20)
-
-    TextSurf_n, TextRect_n = text_objects2("Press enter to continue.", dialogue)
-    TextRect_n.center = (275,80)
+    # text_box = pygame.image.load("pics/black_rect.png")
+    # text_box.set_alpha(150)
+    # text_box = pygame.transform.scale(text_box, (width,150))
 
     didplaycereal = False
-    next = 0
 
     player.rect.x = 1000
 
@@ -90,12 +75,21 @@ def leveltwo ():
         cerealRectPos = (520,126,60,78)
         cerealRect = pygame.draw.rect(screen, white, cerealRectPos)
 
-        rectangle = pygame.draw.rect(screen, (0,0,0), table)
         screen.blit(full_kitchen, (0,0))
+        rectangle = pygame.draw.rect(screen, (0,0,0), table)
         key = pygame.key.get_pressed()
 
-        screen.blit(TextSurf,TextRect) #kai
+        dialoguebarPos = (90,380,1000,300)
+        dialoguebar = pygame.draw.rect(screen, white, dialoguebarPos)
+        # screen.blit(text_box, (0,0))
 
+        beforekitchentext = pygame.font.Font('fonts/arcade.ttf', 50)
+        TextSurf, TextRect = text_objects("Kai", beforekitchentext)
+        TextRect.center = (200,520)
+        screen.blit(TextSurf,TextRect)
+
+        kaicon = pygame.image.load("KAI/uh.png")
+        kaicon = pygame.transform.scale(kaicon, (width,height))
         screen.blit(kaicon,(-400,100))
 
         #DIALOGUE GOES HERE
@@ -103,15 +97,26 @@ def leveltwo ():
             dialoguebarPos = (90,380,1000,300)
             dialoguebar = pygame.draw.rect(screen, white, dialoguebarPos)
 
+            screen.blit(TextSurf,TextRect)
+            screen.blit(kaicon,(-400,100))
+
+
+        cereal = pygame.image.load("pics/lvl-bgs/cereal.png")
+        cereal = pygame.transform.scale(cereal, (60,78))
+        test_rect2 = cereal.get_rect()
         screen.blit(cereal, (520,126))
-        screen.blit(text_box, (0,0))
-        screen.blit(TextSurf,TextRect)
 
         if didplaycereal == False:
             if click[0] == 1 and cerealRect.collidepoint(mouse):
                 didplaycereal = True
                 cereal_game.cerealgame()
                 continue
+
+        if click[0] == 1 and cerealRect.collidepoint(mouse):
+            truevar = False
+            cereal_game.cerealgame()
+
+        screen.blit(cereal,(520, 126))
 
         screen.blit(player.image, player.rect)
         player.update()
@@ -138,7 +143,34 @@ def leveltwo ():
         #         TextRect1.center = (player.rect.x - 200, player.rect.y - 50)
         #         screen.blit(TextSurf1,TextRect1)
 
+        #
+        # chair1 = pygame.image.load("pics/lvl-bgs/chair1.png")
+        # chair1 = pygame.transform.scale(chair1, (width,height))
+        # screen.blit(chair1, (0,0))
+        #
+        # chair2 = pygame.image.load("pics/lvl-bgs/chair2.png")
+        # chair2 = pygame.transform.scale(chair2, (width,height))
+        # screen.blit(chair2, (0,0))
+        #
+        # bowl = pygame.image.load("pics/lvl-bgs/bowl.png")
+        # bowl = pygame.transform.scale(bowl, (width,height))
+        # screen.blit(bowl, (0,0))
+        #
+        # cereal = pygame.image.load("pics/lvl-bgs/cereal.png")
+        # cereal = pygame.transform.scale(cereal, (60,78))
+        # screen.blit(cereal, (520,126))
+        #
+        # door_out = pygame.image.load("pics/lvl-bgs/doorout.png")
+        # door_out = pygame.transform.scale(door_out, (width,height))
+        # screen.blit(door_out, (0,0))
+        #
+        # kitchen_door = pygame.image.load("pics/lvl-bgs/kitchen_door.png")
+        # kitchen_door = pygame.transform.scale(kitchen_door, (width,height))
+        # screen.blit(kitchen_door, (0,0))
+
 # needs to have dialogue for Kai and Kit Kat after the cereal game
+
+
 
         pygame.display.flip()
 
@@ -150,5 +182,11 @@ def leveltwo ():
                 if event.key == K_ESCAPE:
                     pygame.quit()
                     exit(0)
+                elif event.key == K_KP_ENTER:
+                    pygame.quit()
+                    exit(0)
+
+            elif event.type == pygame.MOUSEBUTTONDOWN:
+                click_img = event.pos
 
 leveltwo()
