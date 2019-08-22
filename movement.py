@@ -71,21 +71,23 @@ class Wall(pygame.sprite.Sprite):
 class Kai (pygame.sprite.Sprite):
     def __init__(self):
         super(Kai, self).__init__()
-        self.image = pygame.image.load("KAi/kai(r).png")
+        self.image = pygame.image.load("KAi/kai(l).png")
         self.image.set_colorkey((255, 255, 255), RLEACCEL)
         self.rect = self.image.get_rect()
-        self.rect.x = 150
+        self.rect.x = 100
         self.rect.y = 250 #change y position
         self.radius = int(self.rect.width / 2)
         self.isjump = 0
-        self.v = 8
-    def move(self, pos):
-        while self.rect.x !=pos[0] or self.rect.y!=pos[1]:
-            if self.rect.x > pos[0]:
-                self.rect.x -= 3
-            elif self.rect.x < pos[0]:
-                self.rect.x += 3
-            if self.rect.y > pos[1]:
-                self.rect.y -= 3
-            elif self.rect.y < pos[1]:
-                self.rect.y += 3
+        self.gotox= self.rect.x
+        self.gotoy= self.rect.y
+    def update(self):
+        if self.rect.x > self.gotox :
+            self.rect.x -= 3
+            self.image = pygame.image.load("KAi/kai(l).png")
+        elif self.rect.x < self.gotox :
+            self.rect.x += 3
+            self.image = pygame.image.load("KAi/kai(r).png")
+        if self.rect.y > self.gotoy:
+            self.rect.y -= 3
+        elif self.rect.y <self.gotoy:
+            self.rect.y += 3

@@ -39,7 +39,7 @@ class Oreo(pygame.sprite.Sprite):
             self.rect.y = random.randint(-150,-10)
 
         # if touching, add point and disappear
-        if player.rect.colliderect(o.rect) or player.rect.colliderect(o1.rect):
+        if player.rect.colliderect(o.rect) : #or player.rect.colliderect(o1.rect):
             self.rect.x = random.randint(10,1100)
             self.rect.y = random.randint(-150,-10)
             self.cereal_count += 1
@@ -61,7 +61,7 @@ class Kit (pygame.sprite.Sprite):
             self.rect.x += dx
 
 player = Kit()
-o1 = Oreo()
+# o1 = Oreo()
 o = Oreo()
 # Create a custom event for adding a new enemy.
 ADDENEMY = pygame.USEREVENT + 1
@@ -124,7 +124,7 @@ def cerealgame ():
 
         # runs the update function
         o.update()
-        o1.update()
+        # o1.update()
         player.update()
         # draws oreo
 
@@ -152,19 +152,18 @@ def cerealgame ():
 
         key = pygame.key.get_pressed()
         if key[pygame.K_LEFT]:
-            player.move(-2)
+            player.move(-4)
             player.image = pygame.image.load("KIT_KAT/KITKAT(left).png")
         if key[pygame.K_RIGHT]:
-            player.move(2)
+            player.move(4)
             player.image = pygame.image.load("KIT_KAT/KITKAT(cereal).png")
-        if key[pygame.K_UP]:
-            player.jump()
+
 
 
         screen.blit(o.image, o.rect)
-        screen.blit(o1.image, o1.rect)
+        # screen.blit(o1.image, o1.rect)
         screen.blit(player.image, player.rect)
-        if o.cereal_count >= 15:
+        if o.cereal_count >= 1:
              truevar = False
             #level_two_aftergame.leveltwoaftergame()
 
