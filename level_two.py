@@ -31,7 +31,6 @@ def leveltwo ():
     #defining screen
     width, height = 1200,600
     screen = pygame.display.set_mode((width, height))
-    # transitions.init ( screen, width, height )
 
     truevar = True
     clock = pygame.time.Clock()
@@ -96,7 +95,7 @@ def leveltwo ():
 
             screen.blit(TextSurf,TextRect)
             screen.blit(kaicon,(-400,100))
-            
+
 
         cereal = pygame.image.load("pics/lvl-bgs/cereal.png")
         cereal = pygame.transform.scale(cereal, (60,78))

@@ -4,8 +4,6 @@
 
 import pygame
 from pygame.locals import *
-import transitions
-from transitions import *
 import random
 
 # import start_menu
@@ -30,7 +28,6 @@ def loading ():
     #defining screen
     width, height = 1200,600
     screen = pygame.display.set_mode((width, height))
-    transitions.init ( screen, width, height )
     hideSpeech = True
 
     truevar = True

@@ -1,12 +1,10 @@
 # Things to do here:
 # Have Kai lay on the bed
 # Collision detection on edges
-# Interacting with the door will exit to the kitchen
 # Make furniture interactive (i.e. clicking on the cat door will send Kit Kat to closet)
 import pygame
 from pygame.locals import *
-import transitions
-from transitions import *
+
 import random
 import level_two
 
@@ -38,7 +36,6 @@ def levelone ():
     #defining screen
     width, height = 1200,600
     screen = pygame.display.set_mode((width, height),flags)
-    transitions.init ( screen, width, height )
 
     truevar = True
     DoorOpen = False
@@ -66,12 +63,15 @@ def levelone ():
     readyy= pygame.image.load("text/readyy.png").convert()
     pawsitive= pygame.image.load("text/pawsitive!.png").convert()
     noenergy =pygame.image.load("text/kai speaking.png").convert()
+
     TextSurf4, TextRect4 = text_objects("Press enter to continue", speechText)
     TextRect4.center = (900,80)
     TextSurf3, TextRect3 = text_objects("Pick up Kai's bag using the space bar", speechText)
     TextRect3.center = (900,80)
     TextSurf1, TextRect1 = text_objects("Use left, right, and up arrows to jump on Kai's bed", speechText)
     TextRect1.center = (900,80)
+    TextSurf5, TextRect5 = text_objects("Exit the room using the enter key", speechText)
+    TextRect5.center = (900,80)
 
     while truevar:
 
@@ -119,19 +119,22 @@ def levelone ():
                 enter =6
             elif enter == 6:
                 screen.blit(TextSurf3,TextRect3)
+            elif enter >= 7:
+                screen.blit(TextSurf5,TextRect5)
 
 
         if player.rect.x >800 and player.rect.x< 900:
             pickedUp= True
-
 
         player.update()
 
         key = pygame.key.get_pressed()
         if key[pygame.K_LEFT]:
             player.move(-2)
+            player.image = pygame.image.load("KIT_KAT/kitkat_left2.png")
         if key[pygame.K_RIGHT]:
             player.move(2)
+            player.image = pygame.image.load("KIT_KAT/kitkat_right2.png")
         if enter >= 1:
             if key[pygame.K_UP]:
                 player.jump()

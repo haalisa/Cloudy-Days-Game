@@ -5,8 +5,6 @@
 
 import pygame
 from pygame.locals import *
-# import transitions
-# from transitions import *
 import random
 from movement import *
 
@@ -76,8 +74,6 @@ def cerealgame ():
     darkBlue = (141,138,186)
     darkerBlue = (114,111,161)
     brown = (111,83,76)
-
-    # transitions.init ( screen, width, height )
 
     truevar = True
     clock = pygame.time.Clock()

@@ -7,8 +7,6 @@
 
 import pygame
 from pygame.locals import *
-import transitions
-from transitions import *
 import random
 
 import level_one
@@ -33,7 +31,6 @@ def game_intro():
     #defining screen
     width, height = 1200,600
     screen = pygame.display.set_mode((width, height))
-    # transitions.init ( screen, width, height )
 
     clock = pygame.time.Clock()
     cloud1_xPos = 200

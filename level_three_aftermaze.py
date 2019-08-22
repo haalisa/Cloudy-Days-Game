@@ -2,8 +2,6 @@
 
 import pygame
 from pygame.locals import *
-import transitions
-from transitions import *
 import random
 import maze
 from movement import Cat
@@ -32,7 +30,6 @@ def levelthreeaftermaze ():
     #defining screen
     width, height = 1200,600
     screen = pygame.display.set_mode((width, height),flags)
-    transitions.init ( screen, width, height )
     hideSpeech = True
 
     truevar = True

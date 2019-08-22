@@ -2,8 +2,7 @@
 
 import pygame
 from pygame.locals import *
-import transitions
-from transitions import *
+
 import random
 
 def text_objects(text, font):
@@ -26,7 +25,6 @@ def endscreen():
     #defining screen
     width, height = 1200,600
     screen = pygame.display.set_mode((width, height),flags)
-    # transitions.init ( screen, width, height )
 
     clock = pygame.time.Clock()
     cloud1_xPos = 200
