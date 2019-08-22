@@ -59,6 +59,9 @@ def leveltwo ():
     kitkat_thought_text = pygame.font.Font('fonts/cambria.ttf', 20)
     TextSurf1, TextRect1 = text_objects("Oops, we need to do something first!", kitkat_thought_text)
 
+    # text_box = pygame.image.load("pics/black_rect.png")
+    # text_box.set_alpha(150)
+    # text_box = pygame.transform.scale(text_box, (width,150))
 
     didplaycereal = False
 
@@ -78,6 +81,7 @@ def leveltwo ():
 
         dialoguebarPos = (90,380,1000,300)
         dialoguebar = pygame.draw.rect(screen, white, dialoguebarPos)
+        # screen.blit(text_box, (0,0))
 
         beforekitchentext = pygame.font.Font('fonts/arcade.ttf', 50)
         TextSurf, TextRect = text_objects("Kai", beforekitchentext)
@@ -185,4 +189,4 @@ def leveltwo ():
             elif event.type == pygame.MOUSEBUTTONDOWN:
                 click_img = event.pos
 
-# leveltwo()
+leveltwo()
