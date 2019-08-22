@@ -59,6 +59,8 @@ def levelthree ():
     text_box.set_alpha(200)
     text_box = pygame.transform.scale(text_box, (width,150))
 
+    player.rect.x = 0
+
     while truevar:
 
         mouse = pygame.mouse.get_pos()
