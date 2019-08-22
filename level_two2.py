@@ -4,15 +4,10 @@
 
 import pygame
 from pygame.locals import *
-# import transitions
-# from transitions import *
-# import random
 
 import cereal_game
 import level_two_outside
 from movement import *
-
-# import start_menu this is what is causing only lvl 1 to run
 
 def text_objects(text, font):
     black = (0,0,0)
@@ -34,7 +29,6 @@ def leveltwo ():
     #defining screen
     width, height = 1200,600
     screen = pygame.display.set_mode((width, height))
-    # transitions.init ( screen, width, height )
 
     truevar = True
     clock = pygame.time.Clock()

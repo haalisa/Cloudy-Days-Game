@@ -2,8 +2,7 @@
 
 import pygame
 from pygame.locals import *
-import transitions
-from transitions import *
+
 import random
 import maze
 from movement import Cat
@@ -31,7 +30,6 @@ def levelthree ():
     #defining screen
     width, height = 1200,600
     screen = pygame.display.set_mode((width, height),flags)
-    transitions.init ( screen, width, height )
     hideSpeech = True
 
     truevar = True
@@ -41,8 +39,9 @@ def levelthree ():
     school_door = pygame.image.load("pics/lvl-bgs/kitchen_door.png")
     block_rect = pygame.Rect(950, 200, 200, 335)
     player= Cat()
-    player.rect.x = 0
+
     while truevar:
+
         mouse = pygame.mouse.get_pos()
         click = pygame.mouse.get_pressed()
 
@@ -84,7 +83,3 @@ def levelthree ():
 
             elif event.type == pygame.MOUSEBUTTONDOWN:
                 click_img = event.pos
-
-
-#
-# levelthree()

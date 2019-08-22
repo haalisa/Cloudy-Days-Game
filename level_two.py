@@ -31,7 +31,6 @@ def leveltwo ():
     #defining screen
     width, height = 1200,600
     screen = pygame.display.set_mode((width, height))
-    # transitions.init ( screen, width, height )
 
     truevar = True
     clock = pygame.time.Clock()
@@ -39,6 +38,11 @@ def leveltwo ():
     clock.tick(180)
 
     pygame.init()
+
+
+    full_kitchen = pygame.image.load("pics/lvl-bgs/full_kitchen.png").convert()
+    full_kitchen = pygame.transform.scale(full_kitchen, (width,height))
+
 
     player = Cat()
     table = Wall((150,470))
@@ -55,6 +59,9 @@ def leveltwo ():
     kitkat_thought_text = pygame.font.Font('fonts/cambria.ttf', 20)
     TextSurf1, TextRect1 = text_objects("Oops, we need to do something first!", kitkat_thought_text)
 
+    # text_box = pygame.image.load("pics/black_rect.png")
+    # text_box.set_alpha(150)
+    # text_box = pygame.transform.scale(text_box, (width,150))
 
     didplaycereal = False
 
@@ -72,6 +79,19 @@ def leveltwo ():
         rectangle = pygame.draw.rect(screen, (0,0,0), table)
         key = pygame.key.get_pressed()
 
+        dialoguebarPos = (90,380,1000,300)
+        dialoguebar = pygame.draw.rect(screen, white, dialoguebarPos)
+        # screen.blit(text_box, (0,0))
+
+        beforekitchentext = pygame.font.Font('fonts/arcade.ttf', 50)
+        TextSurf, TextRect = text_objects("Kai", beforekitchentext)
+        TextRect.center = (200,520)
+        screen.blit(TextSurf,TextRect)
+
+        kaicon = pygame.image.load("KAI/uh.png")
+        kaicon = pygame.transform.scale(kaicon, (width,height))
+        screen.blit(kaicon,(-400,100))
+
         #DIALOGUE GOES HERE
         if key[pygame.K_RETURN]:
             dialoguebarPos = (90,380,1000,300)
@@ -79,6 +99,7 @@ def leveltwo ():
 
             screen.blit(TextSurf,TextRect)
             screen.blit(kaicon,(-400,100))
+
 
         cereal = pygame.image.load("pics/lvl-bgs/cereal.png")
         cereal = pygame.transform.scale(cereal, (60,78))
@@ -122,10 +143,6 @@ def leveltwo ():
         #         TextRect1.center = (player.rect.x - 200, player.rect.y - 50)
         #         screen.blit(TextSurf1,TextRect1)
 
-        #
-        # kitchen = pygame.image.load("pics/lvl-bgs/kitchen.png").convert()
-        # kitchen = pygame.transform.scale(kitchen, (width,height))
-        # screen.blit(kitchen, (0,0))
         #
         # chair1 = pygame.image.load("pics/lvl-bgs/chair1.png")
         # chair1 = pygame.transform.scale(chair1, (width,height))
@@ -172,4 +189,4 @@ def leveltwo ():
             elif event.type == pygame.MOUSEBUTTONDOWN:
                 click_img = event.pos
 
-# leveltwo()
+leveltwo()
