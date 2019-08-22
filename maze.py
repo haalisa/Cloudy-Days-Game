@@ -96,7 +96,7 @@ os.environ["SDL_VIDEO_CENTERED"] = "1"
 pygame.init()
 
 # Set up the display
-pygame.display.set_caption("Get to the red square!")
+pygame.display.set_caption("Cloudy Days")
 screen = pygame.display.set_mode((1200, 800), flags)
 # ?screen = pygame.display.set_mode((320, 240))
 

@@ -56,8 +56,10 @@ def levelthree ():
         key = pygame.key.get_pressed()
         if key[pygame.K_LEFT]:
             player.move(-2)
+            player.image = pygame.image.load("KIT_KAT/kitkat_left2.png")
         if key[pygame.K_RIGHT]:
             player.move(2)
+            player.image = pygame.image.load("KIT_KAT/kitkat_right2.png")
         if key[pygame.K_UP]:
             player.jump()
 
