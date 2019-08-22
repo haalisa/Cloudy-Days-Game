@@ -9,8 +9,7 @@ import random
 import level_two
 
 # import start_menu
-from movement import Cat
-from movement import Wall
+from movement import*
 from itertools import chain
 
 def text_objects(text, font):
@@ -36,7 +35,7 @@ def levelone ():
     lightBlue = (180,180,225)
     darkBlue = (141,138,186)
     darkerBlue = (114,111,161)
-
+    kaistand= False
     #defining screen
     width, height = 1200,600
     screen = pygame.display.set_mode((width, height))
@@ -122,7 +121,7 @@ def levelone ():
     kaicon = pygame.transform.scale(kaicon, (100,130))
 
     next = 0
-
+    kai = Kai()
     while truevar:
 
         rectangle = pygame.draw.rect(screen, (0,0,0), bed)
@@ -191,6 +190,7 @@ def levelone ():
 
         if enter==2 and jumps >=13:
             KaiUp = True
+            kaistand= True
             next = 6 # press enter to continue
         if KaiUp == True:
             if enter == 3:
@@ -219,9 +219,12 @@ def levelone ():
             screen.blit(TextSurf_n6,TextRect_n6)
             screen.blit(kaicon, (25,15))
             screen.blit(TextSurf_n,TextRect_n)
-
+        if kaistand:
+            screen.blit(kai.image,kai.rect)
+            kai.update
         if KaiUp == True:
             #full screen text box
+            screen.blit
             screen.blit(text_box_big,(0,0))
             screen.blit(text_box_big,(0,0))
             if next == 6:
@@ -248,7 +251,7 @@ def levelone ():
                 print ("true")
         if next == 11:
             screen.blit(TextSurf_n13,TextRect_n13) #let's go
-
+            kai.gotox= 800
 
 
 
@@ -266,4 +269,4 @@ def levelone ():
                 if event.key==K_RETURN:
                     enter += 1
 #take this out later
-# levelone()
+levelone()
