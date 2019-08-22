@@ -14,6 +14,11 @@ def text_objects(text, font):
     textSurface = font.render(text, True, black)
     return textSurface, textSurface.get_rect()
 
+def text_objects2(text, font):
+    white = (255,255,255)
+    textSurface = font.render(text, True, white)
+    return textSurface, textSurface.get_rect()
+
 def levelthreeaftermaze ():
 
     flags = FULLSCREEN | DOUBLEBUF
@@ -40,6 +45,22 @@ def levelthreeaftermaze ():
     block_rect = pygame.Rect(950, 200, 200, 335)
     player= Cat()
     player.rect.x = 975
+
+    dialogue = pygame.font.Font('fonts/livvic/livvic-medium.ttf', 20)
+
+    TextSurf_n, TextRect_n = text_objects2("We finished the school day!", dialogue)
+    TextRect_n.center = (375,80)
+
+    TextSurf_n1, TextRect_n1 = text_objects("Walk right to leave the school.", dialogue)
+    TextRect_n1.center = (900,560)
+
+    next = 0
+
+    text_box = pygame.image.load("pics/teal_rect.png")
+    text_box.set_alpha(200)
+    text_box = pygame.transform.scale(text_box, (width,150))
+
+
     while truevar:
         mouse = pygame.mouse.get_pos()
         click = pygame.mouse.get_pressed()
