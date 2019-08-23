@@ -63,7 +63,7 @@ class Kaiwcat (pygame.sprite.Sprite):
         self.image.set_colorkey((255, 255, 255), RLEACCEL)
         self.rect = self.image.get_rect()
         self.rect.x = 400
-        self.rect.y = 450 #change y position
+        self.rect.y = 300 #change y position
         self.radius = int(self.rect.width / 2)
         self.isjump = 0
         self.v = 8
