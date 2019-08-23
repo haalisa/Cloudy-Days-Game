@@ -94,7 +94,7 @@ class Kai (pygame.sprite.Sprite):
 class Kainobackpack (pygame.sprite.Sprite):
     def __init__(self):
         super(Kainobackpack, self).__init__()
-        self.image = pygame.image.load("KAi/kai(ww).png")
+        self.image = pygame.image.load("KAI/kai1.png")
         self.image.set_colorkey((255, 255, 255), RLEACCEL)
         self.rect = self.image.get_rect()
         self.rect.x = 120
@@ -109,7 +109,7 @@ class Kainobackpack (pygame.sprite.Sprite):
             self.image = pygame.image.load("KAi/kai(wwl).png")
         elif self.rect.x < self.gotox :
             self.rect.x += 3
-            self.image = pygame.image.load("KAi/kai(ww).png")
+            self.image = pygame.image.load("KAi/kai1.png")
         if self.rect.y > self.gotoy:
             self.rect.y -= 3
         elif self.rect.y <self.gotoy:

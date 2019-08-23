@@ -71,6 +71,11 @@ def levelthreeaftermaze ():
         screen.blit(player.image, player.rect)
         player.update()
 
+        screen.blit(text_box,(0,0))
+        if next == 0:
+            screen.blit(TextSurf_n,TextRect_n)
+            screen.blit(TextSurf_n1,TextRect_n1)
+
         key = pygame.key.get_pressed()
         if key[pygame.K_LEFT]:
             player.move(-2)

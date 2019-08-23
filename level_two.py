@@ -175,6 +175,7 @@ def leveltwo ():
 
         if didplaycereal == True:
             if player.rect.x < -100:
+                table.delet()
                 level_two_outside.leveltwooutside()
 
         # if didplaycereal == False:
@@ -201,5 +202,5 @@ def leveltwo ():
                 if event.key==K_RETURN:
                     enter += 1
 
-# 
+#
 # leveltwo()

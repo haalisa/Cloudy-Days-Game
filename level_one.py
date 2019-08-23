@@ -188,6 +188,7 @@ def levelone ():
             DoorOpen = True
             enter = 1
             kaistand= True
+
         if enter==2 and jumps >=13:
             KaiUp = True
             next = 6 # press enter to continue
@@ -237,7 +238,6 @@ def levelone ():
                 screen.blit(TextSurf_n9,TextRect_n9) #I don't have the energy to deal with school today
                 screen.blit(TextSurf_n,TextRect_n)
                 screen.blit(kaicon, (260,290))
-                screen.blit(kai1, (100, 100))
 
             if next == 8:
                 screen.blit(TextSurf_n10,TextRect_n10) #stay pawsitive

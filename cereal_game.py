@@ -163,7 +163,7 @@ def cerealgame ():
         screen.blit(o.image, o.rect)
         # screen.blit(o1.image, o1.rect)
         screen.blit(player.image, player.rect)
-        if o.cereal_count >= 1:
+        if o.cereal_count >= 15:
              truevar = False
             #level_two_aftergame.leveltwoaftergame()
 
