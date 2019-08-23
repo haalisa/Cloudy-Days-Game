@@ -99,8 +99,10 @@ def leveltwo ():
 
     player.rect.x = 1000
 
-    player.image = pygame.image.load("KIT_KAT/kitkat_left2.png")
 
+    player.image = pygame.image.load("KIT_KAT/kitkat_left2.png")
+    kai = Kai()
+    kai.rect.x = 700
     while truevar:
         click = pygame.mouse.get_pressed()
         mouse = pygame.mouse.get_pos()
@@ -112,7 +114,6 @@ def leveltwo ():
         screen.blit(full_kitchen, (0,0))
         screen.blit(cereal, (520,126))
         screen.blit(text_box, (0,0))
-
         key = pygame.key.get_pressed()
 
         if enter == 0:
@@ -121,11 +122,9 @@ def leveltwo ():
             next=1
         if enter == 2:
             next=2
-        if enter == 3:
-            next=3
-        if enter == 4:
+        if enter == 4 and next==3:
             next=4
-        if enter == 5:
+        if enter == 5 and next==4:
             next=5
 
         if next==0:
@@ -148,13 +147,16 @@ def leveltwo ():
         if next ==5:
             screen.blit(TextSurf5,TextRect5) #let's go
             screen.blit(kaicon,(80,10))
-            screen.blit(TextSurf_n,TextRect_n) #enter to continure
+            kai.gotox= -200
+            kai.gotoy= 250
 
-
+        kai.update()
+        screen.blit(kai.image, kai.rect)
         if didplaycereal == False:
             if player.rect.y < 100 and player.rect.x> 420 and player.rect.x<540 :
                 didplaycereal = True
                 cereal_game.cerealgame()
+                next=3
                 enter=3
                 continue
 
@@ -199,5 +201,5 @@ def leveltwo ():
                 if event.key==K_RETURN:
                     enter += 1
 
-
-leveltwo()
+# 
+# leveltwo()
