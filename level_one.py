@@ -26,7 +26,7 @@ def levelone ():
 
     pygame.init() #take this out later
 
-    # flags = FULLSCREEN | DOUBLEBUF
+    flags = FULLSCREEN | DOUBLEBUF
 
     #define colors
     black = (0,0,0)
@@ -38,7 +38,7 @@ def levelone ():
     kaistand= False
     #defining screen
     width, height = 1200,600
-    screen = pygame.display.set_mode((width, height))
+    screen = pygame.display.set_mode((width, height),flags)
 
     truevar = True
     DoorOpen = False
