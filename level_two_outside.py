@@ -42,7 +42,7 @@ def leveltwooutside ():
     clock = pygame.time.Clock()
     click = pygame.mouse.get_pressed()
 
-    player = Cat()
+    player = Kaiwcat()
 
     bus_stop = pygame.image.load("pics/lvl-bgs/full_busstop.png").convert()
     bus_stop = pygame.transform.scale(bus_stop, (width,height))
@@ -74,10 +74,10 @@ def leveltwooutside ():
         key = pygame.key.get_pressed()
         if key[pygame.K_LEFT]:
             player.move(-2)
-            player.image = pygame.image.load("KIT_KAT/kitkat_left2.png")
+            player.image = pygame.image.load("Kai/kai2.png")
         if key[pygame.K_RIGHT]:
             player.move(2)
-            player.image = pygame.image.load("KIT_KAT/kitkat_right2.png")
+            player.image = pygame.image.load("kai/smol_kai.png")
         if key[pygame.K_UP]:
             player.jump()
 
