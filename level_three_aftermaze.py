@@ -51,7 +51,7 @@ def levelthreeaftermaze ():
     TextSurf_n, TextRect_n = text_objects2("We finished the school day!", dialogue)
     TextRect_n.center = (375,80)
 
-    TextSurf_n1, TextRect_n1 = text_objects("Walk right to leave the school.", dialogue)
+    TextSurf_n1, TextRect_n1 = text_objects("Walk left to leave the school.", dialogue)
     TextRect_n1.center = (900,560)
 
     next = 0
