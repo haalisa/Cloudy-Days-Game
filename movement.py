@@ -91,3 +91,26 @@ class Kai (pygame.sprite.Sprite):
             self.rect.y -= 3
         elif self.rect.y <self.gotoy:
             self.rect.y += 3
+class Kainobackpack (pygame.sprite.Sprite):
+    def __init__(self):
+        super(Kainobackpack, self).__init__()
+        self.image = pygame.image.load("KAi/kai(ww).png")
+        self.image.set_colorkey((255, 255, 255), RLEACCEL)
+        self.rect = self.image.get_rect()
+        self.rect.x = 120
+        self.rect.y = 250 #change y position
+        self.radius = int(self.rect.width / 2)
+        self.isjump = 0
+        self.gotox= self.rect.x
+        self.gotoy= self.rect.y
+    def update(self):
+        if self.rect.x > self.gotox :
+            self.rect.x -= 3
+            self.image = pygame.image.load("KAi/kai(wwl).png")
+        elif self.rect.x < self.gotox :
+            self.rect.x += 3
+            self.image = pygame.image.load("KAi/kai(ww).png")
+        if self.rect.y > self.gotoy:
+            self.rect.y -= 3
+        elif self.rect.y <self.gotoy:
+            self.rect.y += 3

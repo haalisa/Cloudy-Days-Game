@@ -121,7 +121,7 @@ def levelone ():
     kaicon = pygame.transform.scale(kaicon, (100,130))
 
     next = 0
-    kai = Kai()
+    kai = Kainobackpack()
     while truevar:
 
         rectangle = pygame.draw.rect(screen, (0,0,0), bed)
@@ -187,10 +187,9 @@ def levelone ():
             next = 5
             DoorOpen = True
             enter = 1
-
+            kaistand= True
         if enter==2 and jumps >=13:
             KaiUp = True
-            kaistand= True
             next = 6 # press enter to continue
         if KaiUp == True:
             if enter == 3:
@@ -219,14 +218,17 @@ def levelone ():
             screen.blit(TextSurf_n6,TextRect_n6)
             screen.blit(kaicon, (25,15))
             screen.blit(TextSurf_n,TextRect_n)
-        if kaistand:
+
+        if next>=5:
             screen.blit(kai.image,kai.rect)
             kai.update
+
         if KaiUp == True:
             #full screen text box
-            screen.blit
+
             screen.blit(text_box_big,(0,0))
             screen.blit(text_box_big,(0,0))
+
             if next == 6:
                 screen.blit(TextSurf_n8,TextRect_n8) #Are you ready for school?
                 screen.blit(TextSurf_n,TextRect_n)
@@ -252,6 +254,7 @@ def levelone ():
         if next == 11:
             screen.blit(TextSurf_n13,TextRect_n13) #let's go
             kai.gotox= 800
+            kai.gotoy= 250
 
 
 
@@ -269,4 +272,4 @@ def levelone ():
                 if event.key==K_RETURN:
                     enter += 1
 #take this out later
-levelone()
+# levelone()
