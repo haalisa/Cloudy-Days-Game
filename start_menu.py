@@ -18,7 +18,7 @@ def text_objects(text, font):
 
 def game_intro():
 
-    # flags = FULLSCREEN | DOUBLEBUF
+    flags = FULLSCREEN | DOUBLEBUF
 
     #define colors
     black = (0,0,0)
@@ -30,7 +30,7 @@ def game_intro():
 
     #defining screen
     width, height = 1200,600
-    screen = pygame.display.set_mode((width, height))
+    screen = pygame.display.set_mode((width, height),flags)
 
     clock = pygame.time.Clock()
     cloud1_xPos = 200
@@ -116,5 +116,6 @@ def game_intro():
                if event.key == K_ESCAPE:
                    pygame.quit()
                    exit(0)
-
+pygame.mixer.music.load('music/bg-music.wav')
+pygame.mixer.music.play(-1)
 game_intro()
