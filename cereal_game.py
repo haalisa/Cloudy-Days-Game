@@ -74,9 +74,9 @@ def text_objects(text, font):
 
 def cerealgame ():
     pygame.init()
-    # flags = FULLSCREEN | DOUBLEBUF
+    flags = FULLSCREEN | DOUBLEBUF
     width, height = 1200,600
-    screen = pygame.display.set_mode((width, height))
+    screen = pygame.display.set_mode((width, height),flags)
 
     #define colors
     black = (0,0,0)

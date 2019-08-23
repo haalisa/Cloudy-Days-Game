@@ -23,7 +23,7 @@ def text_objects2(text, font):
 
 def leveltwo ():
 
-    # flags = FULLSCREEN | DOUBLEBUF
+    flags = FULLSCREEN | DOUBLEBUF
 
     #define colors
     black = (0,0,0)
@@ -35,7 +35,7 @@ def leveltwo ():
 
     #defining screen
     width, height = 1200,600
-    screen = pygame.display.set_mode((width, height))
+    screen = pygame.display.set_mode((width, height),flags)
 
     truevar = True
     clock = pygame.time.Clock()
