@@ -122,6 +122,7 @@ def levelone ():
 
     next = 0
     kai = Kainobackpack()
+
     while truevar:
 
         rectangle = pygame.draw.rect(screen, (0,0,0), bed)
@@ -142,16 +143,25 @@ def levelone ():
 
         player.update()
 
+        # MOVEMENT
         key = pygame.key.get_pressed()
         if key[pygame.K_LEFT]:
             player.move(-2)
+            # goes through the image list (in movement.py)
             player.image = pygame.image.load("KIT_KAT/kitkat_left2.png")
+            # player.image = pygame.image.load(player.leftimages[player.counter])
+            # player.counter = (player.counter + 5) % len(player.leftimages)
         if key[pygame.K_RIGHT]:
             player.move(2)
             player.image = pygame.image.load("KIT_KAT/kitkat_right2.png")
+            # goes through the image list (in movement.py)
+            # player.image = pygame.image.load(player.rightimages[player.counter])
+            # player.counter = (player.counter + 5) % len(player.rightimages)
         if enter >= 1:
             if key[pygame.K_UP]:
                 player.jump()
+            #try putting a
+                #player.counter = 0 #or not moving    here
 
         screen.blit(player.image, player.rect)
 
@@ -269,7 +279,12 @@ def levelone ():
                    pygame.quit()
                    exit(0)
             if event.type == pygame.KEYDOWN:
-                if event.key==K_RETURN:
+                if event.key== K_RETURN:
                     enter += 1
+                # if event.key == pygame.K_DOWN:
+                #     player = pygame.image.load(images[counter])
+                #     counter = (counter + 1) % len(images)
+
+
 #take this out later
 # levelone()

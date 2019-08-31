@@ -4,7 +4,7 @@ walls= []
 class Cat (pygame.sprite.Sprite):
     def __init__(self):
         super(Cat, self).__init__()
-        self.image = pygame.image.load("KIT_KAT/kitkat_right2.png")
+        self.image = pygame.image.load("KIT_KAT/kitkat_right2_cropped.png")
         self.image.set_colorkey((255, 255, 255), RLEACCEL)
         self.rect = self.image.get_rect()
         self.rect.x = 400
@@ -12,6 +12,9 @@ class Cat (pygame.sprite.Sprite):
         self.radius = int(self.rect.width / 2)
         self.isjump = 0
         self.v = 8
+        # self.counter = 0
+        self.rightimages = ['KIT_KAT/kitkat_right2_cropped.png','KIT_KAT/KITKAT(w)_right.png']
+        self.leftimages = ['KIT_KAT/kitkat_left2_cropped.png','KIT_KAT/KITKAT(w)_left.png']
     def move(self, dx):
         # Move each axis separately. Note that this checks for collisions both times.
         if dx != 0:
@@ -26,6 +29,7 @@ class Cat (pygame.sprite.Sprite):
 
     def jump(self):
         self.isjump = 1
+        # self.counter = 0
 
     def update(self):
         if self.isjump:
@@ -56,6 +60,13 @@ class Cat (pygame.sprite.Sprite):
                 if not self.rect.colliderect(wall.rect):
                     self.isjump= 1
                     self.v =0
+
+    # def walk_right(self):
+    #
+    #     self.image = pygame.image.load("KIT_KAT/kitkat_right2_cropped.png")
+    #
+    #     self.image = pygame.image.load("KIT_KAT/KITKAT(w)_right.png")
+
 class Kaiwcat (pygame.sprite.Sprite):
     def __init__(self):
         super(Kaiwcat, self).__init__()
