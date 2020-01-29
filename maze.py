@@ -11,7 +11,7 @@ flags = FULLSCREEN | DOUBLEBUF
 class Cat (pygame.sprite.Sprite):
     def __init__(self):
         super(Cat, self).__init__()
-        self.image = pygame.image.load("smallcat.png")
+        self.image = pygame.image.load("KAI/super_smol_kai.png")
         self.image.set_colorkey((255, 255, 255), RLEACCEL)
         self.rect = self.image.get_rect()
         self.rect.x = 20
@@ -97,7 +97,7 @@ pygame.init()
 
 # Set up the display
 pygame.display.set_caption("Cloudy Days")
-screen = pygame.display.set_mode((1200, 800), flags)
+screen = pygame.display.set_mode((1200, 800),flags)
 # ?screen = pygame.display.set_mode((320, 240))
 
 clock = pygame.time.Clock()
@@ -178,9 +178,21 @@ def main():
     running = True
 
     # Set up the display
-    pygame.display.set_caption("Get to the red square!")
-    screen = pygame.display.set_mode((1200, 800), flags)
+    pygame.display.set_caption("Cloudy Days")
+    screen = pygame.display.set_mode((1200, 800))
+
+    lunch = pygame.image.load("pics/picnic_table.png")
+    lunch = pygame.transform.scale(lunch, (120,100))
+
+    rectpos = pygame.Rect(600, 375, 16, 16)
+
+    lunchdoor = pygame.image.load("pics/lvl-bgs/school_door.png")
+    lunchdoor = pygame.transform.scale(lunchdoor, (35,52))
+
+    doorpos = pygame.Rect(1119, 718, 16, 16)
+
     while running:
+
 
         clock.tick(60)
 
@@ -213,11 +225,14 @@ def main():
         screen.fill((0, 0, 0))
         for wall in walls:
             pygame.draw.rect(screen, (255, 255, 255), wall.rect)
-        pygame.draw.rect(screen, (255, 0, 0), end_rect)
+        screen.blit(lunch , (rectpos))
+        screen.blit(lunchdoor , (doorpos))
+        # pygame.draw.rect(screen, (255, 0, 0), end_rect)
+
         # pygame.draw.rect(screen, (255, 200, 0), player.rect)
         mouse = pygame.mouse.get_pos()
         # print(mouse)
-        if player.rect.x > 100:
+        if player.rect.x > 1120:
             # youwin = pygame.font.Font('fonts/arcade.ttf', 100)
             # TextSurf_yw, TextRect_yw = text_objects("YOU WIN", youwin)
             # TextRect_yw.center = (600,400)

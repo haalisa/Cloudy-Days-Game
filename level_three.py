@@ -14,6 +14,11 @@ def text_objects(text, font):
     textSurface = font.render(text, True, black)
     return textSurface, textSurface.get_rect()
 
+def text_objects2(text, font):
+    white = (255,255,255)
+    textSurface = font.render(text, True, white)
+    return textSurface, textSurface.get_rect()
+
 def levelthree ():
 
     flags = FULLSCREEN | DOUBLEBUF
@@ -40,6 +45,22 @@ def levelthree ():
     block_rect = pygame.Rect(950, 200, 200, 335)
     player= Cat()
 
+    dialogue = pygame.font.Font('fonts/livvic/livvic-medium.ttf', 20)
+
+    TextSurf_n, TextRect_n = text_objects2("Let's get to class!", dialogue)
+    TextRect_n.center = (375,80)
+
+    TextSurf_n1, TextRect_n1 = text_objects("Press enter to interact with objects.", dialogue)
+    TextRect_n1.center = (900,560)
+
+    next = 0
+
+    text_box = pygame.image.load("pics/teal_rect.png")
+    text_box.set_alpha(200)
+    text_box = pygame.transform.scale(text_box, (width,150))
+
+    player.rect.x = 0
+
     while truevar:
 
         mouse = pygame.mouse.get_pos()
@@ -65,6 +86,11 @@ def levelthree ():
             if player.rect.x >900 and player.rect.x <1100:
                 truevar = False
                 maze.main()
+
+        screen.blit(text_box,(0,0))
+        if next == 0:
+            screen.blit(TextSurf_n,TextRect_n)
+            screen.blit(TextSurf_n1,TextRect_n1)
 
         clock.tick(200)
         pygame.display.flip()

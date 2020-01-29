@@ -9,8 +9,7 @@ import random
 import level_two
 
 # import start_menu
-from movement import Cat
-from movement import Wall
+from movement import*
 from itertools import chain
 
 def text_objects(text, font):
@@ -27,7 +26,7 @@ def levelone ():
 
     pygame.init() #take this out later
 
-    # flags = FULLSCREEN | DOUBLEBUF
+    flags = FULLSCREEN | DOUBLEBUF
 
     #define colors
     black = (0,0,0)
@@ -36,10 +35,10 @@ def levelone ():
     lightBlue = (180,180,225)
     darkBlue = (141,138,186)
     darkerBlue = (114,111,161)
-
+    kaistand= False
     #defining screen
     width, height = 1200,600
-    screen = pygame.display.set_mode((width, height))
+    screen = pygame.display.set_mode((width, height),flags)
 
     truevar = True
     DoorOpen = False
@@ -69,7 +68,7 @@ def levelone ():
     dialogue = pygame.font.Font('fonts/livvic/livvic-medium.ttf', 20)
 
     TextSurf_n, TextRect_n = text_objects("Press enter to continue.", dialogue)
-    TextRect_n.center = (900,560)
+    TextRect_n.center = (900,540)
 
     TextSurf_n1, TextRect_n1 = text_objects2("Hi, I'm Kit Kat. That's Kai, my best friend.", dialogue)
     TextRect_n1.center = (375,80)
@@ -122,6 +121,7 @@ def levelone ():
     kaicon = pygame.transform.scale(kaicon, (100,130))
 
     next = 0
+    kai = Kainobackpack()
 
     while truevar:
 
@@ -143,16 +143,25 @@ def levelone ():
 
         player.update()
 
+        # MOVEMENT
         key = pygame.key.get_pressed()
         if key[pygame.K_LEFT]:
             player.move(-2)
+            # goes through the image list (in movement.py)
             player.image = pygame.image.load("KIT_KAT/kitkat_left2.png")
+            # player.image = pygame.image.load(player.leftimages[player.counter])
+            # player.counter = (player.counter + 5) % len(player.leftimages)
         if key[pygame.K_RIGHT]:
             player.move(2)
             player.image = pygame.image.load("KIT_KAT/kitkat_right2.png")
+            # goes through the image list (in movement.py)
+            # player.image = pygame.image.load(player.rightimages[player.counter])
+            # player.counter = (player.counter + 5) % len(player.rightimages)
         if enter >= 1:
             if key[pygame.K_UP]:
                 player.jump()
+            #try putting a
+                #player.counter = 0 #or not moving    here
 
         screen.blit(player.image, player.rect)
 
@@ -160,8 +169,10 @@ def levelone ():
         # TO DO: make the bed wall not work in the kitchen
         if key[pygame.K_RETURN] and next==11:
             if player.rect.x >900 and player.rect.x <1100:
+                bed.delet()
                 truevar = False
                 level_two.leveltwo() #change to level_two later when those files have been combined
+
 
         if player.rect.x > 50 and player.rect.x<300 and player.v == 0.25:
             jumps +=1
@@ -186,8 +197,9 @@ def levelone ():
             next = 5
             DoorOpen = True
             enter = 1
+            kaistand= True
 
-        if enter==2:
+        if enter==2 and jumps >=13:
             KaiUp = True
             next = 6 # press enter to continue
         if KaiUp == True:
@@ -218,10 +230,16 @@ def levelone ():
             screen.blit(kaicon, (25,15))
             screen.blit(TextSurf_n,TextRect_n)
 
+        if next>=5:
+            screen.blit(kai.image,kai.rect)
+            kai.update
+
         if KaiUp == True:
             #full screen text box
+
             screen.blit(text_box_big,(0,0))
             screen.blit(text_box_big,(0,0))
+
             if next == 6:
                 screen.blit(TextSurf_n8,TextRect_n8) #Are you ready for school?
                 screen.blit(TextSurf_n,TextRect_n)
@@ -230,7 +248,6 @@ def levelone ():
                 screen.blit(TextSurf_n9,TextRect_n9) #I don't have the energy to deal with school today
                 screen.blit(TextSurf_n,TextRect_n)
                 screen.blit(kaicon, (260,290))
-
 
             if next == 8:
                 screen.blit(TextSurf_n10,TextRect_n10) #stay pawsitive
@@ -246,7 +263,8 @@ def levelone ():
                 print ("true")
         if next == 11:
             screen.blit(TextSurf_n13,TextRect_n13) #let's go
-
+            kai.gotox= 800
+            kai.gotoy= 250
 
 
 
@@ -261,7 +279,12 @@ def levelone ():
                    pygame.quit()
                    exit(0)
             if event.type == pygame.KEYDOWN:
-                if event.key==K_RETURN:
+                if event.key== K_RETURN:
                     enter += 1
+                # if event.key == pygame.K_DOWN:
+                #     player = pygame.image.load(images[counter])
+                #     counter = (counter + 1) % len(images)
+
+
 #take this out later
-levelone()
+# levelone()
